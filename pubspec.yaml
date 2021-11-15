@@ -21,7 +21,6 @@ dependencies:
     sdk: flutter
   mobx:
   flutter_mobx:
-  cached_network_image: ^2.0.0
   md2_tab_indicator: ^1.0.2
   flutter_staggered_animations: "^0.1.2"
   sliding_sheet: ^0.2.4

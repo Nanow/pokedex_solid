@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:mobx/mobx.dart';
 import 'package:pokedex_youtube/consts/consts_api.dart';
 import 'package:pokedex_youtube/consts/consts_app.dart';
 import 'package:pokedex_youtube/models/pokeapi.dart';
-import 'package:http/http.dart' as http;
+
 part 'pokeapi_store.g.dart';
 
 class PokeApiStore = _PokeApiStoreBase with _$PokeApiStore;
@@ -51,12 +51,8 @@ abstract class _PokeApiStoreBase with Store {
 
   @action
   Widget getImage({String numero}) {
-    return CachedNetworkImage(
-      placeholder: (context, url) => new Container(
-        color: Colors.transparent,
-      ),
-      imageUrl:
-          'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$numero.png',
+    return Image.network(
+      'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$numero.png',
     );
   }
 

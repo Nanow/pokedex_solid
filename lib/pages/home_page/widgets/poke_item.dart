@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex_youtube/consts/consts_app.dart';
 
@@ -95,15 +94,11 @@ class PokeItem extends StatelessWidget {
                 alignment: Alignment.bottomRight,
                 child: Hero(
                   tag: name,
-                  child: CachedNetworkImage(
+                  child: Image.network(
+                    'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$num.png',
                     alignment: Alignment.bottomRight,
                     height: 80,
                     width: 80,
-                    placeholder: (context, url) => new Container(
-                      color: Colors.transparent,
-                    ),
-                    imageUrl:
-                        'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$num.png',
                   ),
                 ),
               ),
@@ -112,12 +107,13 @@ class PokeItem extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                ConstsApp.getColorType(type: types[0]).withOpacity(0.7),
-                ConstsApp.getColorType(type: types[0])
-              ],),
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              ConstsApp.getColorType(type: types[0]).withOpacity(0.7),
+              ConstsApp.getColorType(type: types[0])
+            ],
+          ),
           borderRadius: BorderRadius.all(
             Radius.circular(20),
           ),

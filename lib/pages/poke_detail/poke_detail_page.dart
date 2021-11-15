@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
@@ -202,8 +201,10 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                   controller: _pageController,
                   onPageChanged: (index) {
                     _pokemonStore.setPokemonAtual(index: index);
-                    _pokeApiV2Store.getInfoPokemon(_pokemonStore.pokemonAtual.name);
-                    _pokeApiV2Store.getInfoSpecie(_pokemonStore.pokemonAtual.id.toString());
+                    _pokeApiV2Store
+                        .getInfoPokemon(_pokemonStore.pokemonAtual.name);
+                    _pokeApiV2Store.getInfoSpecie(
+                        _pokemonStore.pokemonAtual.id.toString());
                   },
                   itemCount: _pokemonStore.pokeAPI.pokemon.length,
                   itemBuilder: (BuildContext context, int index) {
@@ -232,7 +233,7 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                               );
                             }),
                         IgnorePointer(
-                                                  child: Observer(
+                          child: Observer(
                               name: 'Pokemon',
                               builder: (context) {
                                 return Row(
@@ -244,31 +245,27 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                                         tag: index == _pokemonStore.posicaoAtual
                                             ? _pokeitem.name
                                             : 'none' + index.toString(),
-                                        child: CachedNetworkImage(
+                                        child: Image.network(
+                                          'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${_pokeitem.num}.png',
                                           height: 160,
                                           width: 160,
-                                          placeholder: (context, url) =>
-                                              new Container(
-                                            color: Colors.transparent,
-                                          ),
-                                          color:
-                                              index == _pokemonStore.posicaoAtual
-                                                  ? null
-                                                  : Colors.black.withOpacity(0.5),
-                                          imageUrl:
-                                              'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${_pokeitem.num}.png',
+                                          color: index ==
+                                                  _pokemonStore.posicaoAtual
+                                              ? null
+                                              : Colors.black.withOpacity(0.5),
                                         ),
                                       ),
                                       duration: Duration(milliseconds: 400),
                                       curve: Curves.easeIn,
                                       padding: EdgeInsets.only(
-                                          top: index == _pokemonStore.posicaoAtual
+                                          top: index ==
+                                                  _pokemonStore.posicaoAtual
                                               ? 0
                                               : 60,
-                                          bottom:
-                                              index == _pokemonStore.posicaoAtual
-                                                  ? 0
-                                                  : 60),
+                                          bottom: index ==
+                                                  _pokemonStore.posicaoAtual
+                                              ? 0
+                                              : 60),
                                     ),
                                   ],
                                 );
