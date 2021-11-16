@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:mobx/mobx.dart';
 
-import '../consts/consts_api.dart';
 import '../consts/consts_app.dart';
 import '../models/pokeon_list_model.dart';
 
@@ -59,7 +58,12 @@ abstract class _PokeApiStoreBase with Store {
 
   Future<PokeListModel?> loadPokeAPI() async {
     try {
-      final response = await http.get(Uri(path: ConstsAPI.pokeapiURL));
+      final response = await http.get(
+        Uri.https(
+          "raw.githubusercontent.com",
+          "Biuni/PokemonGO-Pokedex/master/pokedex.json",
+        ),
+      );
       var decodeJson = jsonDecode(response.body);
       return PokeListModel.fromJson(decodeJson);
     } catch (error, stacktrace) {

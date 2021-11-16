@@ -8,32 +8,34 @@ import '../../../stores/pokeapiv2_store.dart';
 class AbaStatus extends StatelessWidget {
   final PokeApiV2Store? _pokeApiV2Store = GetIt.instance<PokeApiV2Store>();
 
-  List<int?> getStatusPokemon(PokemonDetailModel pokeApiV2) {
+  List<int?> getStatusPokemon(PokemonDetailModel? pokeApiV2) {
     List<int?> list = [1, 2, 3, 4, 5, 6, 7];
     int sum = 0;
-    pokeApiV2.stats!.forEach((f) {
-      sum = sum + f.baseStat!;
-      switch (f.stat!.name) {
-        case 'speed':
-          list[0] = f.baseStat;
-          break;
-        case 'special-defense':
-          list[1] = f.baseStat;
-          break;
-        case 'special-attack':
-          list[2] = f.baseStat;
-          break;
-        case 'defense':
-          list[3] = f.baseStat;
-          break;
-        case 'attack':
-          list[4] = f.baseStat;
-          break;
-        case 'hp':
-          list[5] = f.baseStat;
-          break;
-      }
-    });
+    if (pokeApiV2?.stats != null) {
+      pokeApiV2!.stats!.forEach((f) {
+        sum = sum + f.baseStat!;
+        switch (f.stat!.name) {
+          case 'speed':
+            list[0] = f.baseStat;
+            break;
+          case 'special-defense':
+            list[1] = f.baseStat;
+            break;
+          case 'special-attack':
+            list[2] = f.baseStat;
+            break;
+          case 'defense':
+            list[3] = f.baseStat;
+            break;
+          case 'attack':
+            list[4] = f.baseStat;
+            break;
+          case 'hp':
+            list[5] = f.baseStat;
+            break;
+        }
+      });
+    }
     list[6] = sum;
 
     return list;
@@ -104,7 +106,8 @@ class AbaStatus extends StatelessWidget {
                   width: 10,
                 ),
                 Observer(builder: (context) {
-                  List<int?> _list = getStatusPokemon(_pokeApiV2Store!.pokeApiV2!);
+                  List<int?> _list =
+                      getStatusPokemon(_pokeApiV2Store?.pokeApiV2);
                   return Column(
                     children: <Widget>[
                       Text(
@@ -170,7 +173,8 @@ class AbaStatus extends StatelessWidget {
                   width: 10,
                 ),
                 Observer(builder: (context) {
-                  List<int?> _list = getStatusPokemon(_pokeApiV2Store!.pokeApiV2!);
+                  List<int?> _list =
+                      getStatusPokemon(_pokeApiV2Store!.pokeApiV2!);
                   return Column(
                     children: <Widget>[
                       StatusBar(
