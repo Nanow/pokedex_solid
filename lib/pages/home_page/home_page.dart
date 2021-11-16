@@ -33,7 +33,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
-        overflow: Overflow.visible,
+        clipBehavior: Clip.antiAlias,
+        // overflow: Overflow.visible,
         children: <Widget>[
           Positioned(
             top: MediaQuery.of(context).padding.top - 240 / 2.9,
