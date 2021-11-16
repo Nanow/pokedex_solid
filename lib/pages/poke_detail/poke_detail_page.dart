@@ -10,32 +10,32 @@ import '../../stores/pokeapiv2_store.dart';
 import '../about_page/about_page.dart';
 
 class PokeDetailPage extends StatefulWidget {
-  final int index;
-  PokeDetailPage({Key key, this.index}) : super(key: key);
+  final int? index;
+  PokeDetailPage({Key? key, this.index}) : super(key: key);
 
   @override
   _PokeDetailPageState createState() => _PokeDetailPageState();
 }
 
 class _PokeDetailPageState extends State<PokeDetailPage> {
-  PageController _pageController;
-  PokeApiStore _pokemonStore;
-  PokeApiV2Store _pokeApiV2Store;
+  PageController? _pageController;
+  PokeApiStore? _pokemonStore;
+  PokeApiV2Store? _pokeApiV2Store;
   // MultiTrackTween _animation;
-  double _progress;
-  double _multiple;
-  double _opacity;
-  double _opacityTitleAppBar;
+  late double _progress;
+  double? _multiple;
+  double? _opacity;
+  double? _opacityTitleAppBar;
 
   @override
   void initState() {
     super.initState();
     _pageController =
-        PageController(initialPage: widget.index, viewportFraction: 0.5);
+        PageController(initialPage: widget.index!, viewportFraction: 0.5);
     _pokemonStore = GetIt.instance<PokeApiStore>();
     _pokeApiV2Store = GetIt.instance<PokeApiV2Store>();
-    _pokeApiV2Store.getInfoPokemon(_pokemonStore.pokemonAtual.name);
-    _pokeApiV2Store.getInfoSpecie(_pokemonStore.pokemonAtual.id.toString());
+    _pokeApiV2Store!.getInfoPokemon(_pokemonStore!.pokemonAtual!.name);
+    _pokeApiV2Store!.getInfoSpecie(_pokemonStore!.pokemonAtual!.id.toString());
     // _animation = MultiTrackTween([
     //   Track("rotation").add(Duration(seconds: 5), Tween(begin: 0.0, end: 6.0),
     //       curve: Curves.linear)
@@ -68,8 +68,8 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      _pokemonStore.corPokemon.withOpacity(0.7),
-                      _pokemonStore.corPokemon,
+                      _pokemonStore!.corPokemon.withOpacity(0.7),
+                      _pokemonStore!.corPokemon,
                     ],
                   ),
                 ),
@@ -96,7 +96,7 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                                 height: 50,
                                 width: 50,
                               ),
-                              opacity: _opacityTitleAppBar >= 0.2 ? 0.2 : 0.0,
+                              opacity: _opacityTitleAppBar! >= 0.2 ? 0.2 : 0.0,
                             ),
                             IconButton(
                               icon: Icon(Icons.favorite_border),
@@ -116,7 +116,7 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                           _progress *
                               (MediaQuery.of(context).size.height * 0.060),
                       child: Text(
-                        _pokemonStore.pokemonAtual.name,
+                        _pokemonStore!.pokemonAtual!.name!,
                         style: TextStyle(
                             fontFamily: 'Google',
                             fontSize: 38 -
@@ -137,9 +137,9 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              setTipos(_pokemonStore.pokemonAtual.type),
+                              setTipos(_pokemonStore!.pokemonAtual!.type!),
                               Text(
-                                '#' + _pokemonStore.pokemonAtual.num.toString(),
+                                '#' + _pokemonStore!.pokemonAtual!.num.toString(),
                                 style: TextStyle(
                                     fontFamily: 'Google',
                                     fontSize: 26,
@@ -184,7 +184,7 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
             },
           ),
           Opacity(
-            opacity: _opacity,
+            opacity: _opacity!,
             child: Padding(
               child: SizedBox(
                 height: 200,
@@ -192,15 +192,15 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                   physics: BouncingScrollPhysics(),
                   controller: _pageController,
                   onPageChanged: (index) {
-                    _pokemonStore.setPokemonAtual(index: index);
-                    _pokeApiV2Store
-                        .getInfoPokemon(_pokemonStore.pokemonAtual.name);
-                    _pokeApiV2Store.getInfoSpecie(
-                        _pokemonStore.pokemonAtual.id.toString());
+                    _pokemonStore!.setPokemonAtual(index: index);
+                    _pokeApiV2Store!
+                        .getInfoPokemon(_pokemonStore!.pokemonAtual!.name);
+                    _pokeApiV2Store!.getInfoSpecie(
+                        _pokemonStore!.pokemonAtual!.id.toString());
                   },
-                  itemCount: _pokemonStore.pokeAPI.pokemon.length,
+                  itemCount: _pokemonStore!.pokeAPI!.pokemon!.length,
                   itemBuilder: (BuildContext context, int index) {
-                    Pokemon _pokeitem = _pokemonStore.getPokemon(index: index);
+                    Pokemon _pokeitem = _pokemonStore!.getPokemon(index: index);
                     return Stack(
                       alignment: Alignment.center,
                       children: <Widget>[
@@ -219,15 +219,15 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                                   children: <Widget>[
                                     AnimatedPadding(
                                       child: Hero(
-                                        tag: index == _pokemonStore.posicaoAtual
-                                            ? _pokeitem.name
+                                        tag: index == _pokemonStore!.posicaoAtual
+                                            ? _pokeitem.name!
                                             : 'none' + index.toString(),
                                         child: Image.network(
                                           'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${_pokeitem.num}.png',
                                           height: 160,
                                           width: 160,
                                           color: index ==
-                                                  _pokemonStore.posicaoAtual
+                                                  _pokemonStore!.posicaoAtual
                                               ? null
                                               : Colors.black.withOpacity(0.5),
                                         ),
@@ -236,11 +236,11 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                                       curve: Curves.easeIn,
                                       padding: EdgeInsets.only(
                                           top: index ==
-                                                  _pokemonStore.posicaoAtual
+                                                  _pokemonStore!.posicaoAtual
                                               ? 0
                                               : 60,
                                           bottom: index ==
-                                                  _pokemonStore.posicaoAtual
+                                                  _pokemonStore!.posicaoAtual
                                               ? 0
                                               : 60),
                                     ),

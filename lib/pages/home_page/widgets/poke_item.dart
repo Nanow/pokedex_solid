@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import '../../../consts/consts_app.dart';
 
 class PokeItem extends StatelessWidget {
-  final String name;
-  final int index;
-  final Color color;
-  final String num;
-  final List<String> types;
+  final String? name;
+  final int? index;
+  final Color? color;
+  final String? num;
+  final List<String>? types;
 
   Widget setTipos() {
     List<Widget> lista = [];
-    types.forEach((nome) {
+    types!.forEach((nome) {
       lista.add(
         Column(
           children: <Widget>[
@@ -45,7 +45,7 @@ class PokeItem extends StatelessWidget {
   }
 
   const PokeItem(
-      {Key key, this.name, this.index, this.color, this.num, this.types})
+      {Key? key, this.name, this.index, this.color, this.num, this.types})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -67,7 +67,7 @@ class PokeItem extends StatelessWidget {
                     ),
                     opacity: 0.2,
                   ),
-                  tag: name + 'roatation',
+                  tag: name! + 'roatation',
                 ),
               ),
               Column(
@@ -76,7 +76,7 @@ class PokeItem extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0, top: 8.0),
                     child: Text(
-                      name,
+                      name!,
                       style: TextStyle(
                           fontFamily: 'Google',
                           fontSize: 16,
@@ -93,7 +93,7 @@ class PokeItem extends StatelessWidget {
               Align(
                 alignment: Alignment.bottomRight,
                 child: Hero(
-                  tag: name,
+                  tag: name!,
                   child: Image.network(
                     'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$num.png',
                     alignment: Alignment.bottomRight,
@@ -110,8 +110,8 @@ class PokeItem extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              ConstsApp.getColorType(type: types[0]).withOpacity(0.7),
-              ConstsApp.getColorType(type: types[0])
+              ConstsApp.getColorType(type: types![0])!.withOpacity(0.7),
+              ConstsApp.getColorType(type: types![0])!
             ],
           ),
           borderRadius: BorderRadius.all(

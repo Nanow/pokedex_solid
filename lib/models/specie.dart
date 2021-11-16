@@ -1,27 +1,27 @@
 class Specie {
-  int baseHappiness;
-  int captureRate;
-  ObjPokemon color;
-  EvolutionChain evolutionChain;
-  ObjPokemon evolvesFromSpecies;
-  List<FlavorTextEntries> flavorTextEntries;
-  bool formsSwitchable;
-  int genderRate;
-  List<Genera> genera;
-  ObjPokemon generation;
-  ObjPokemon growthRate;
-  ObjPokemon habitat;
-  bool hasGenderDifferences;
-  int hatchCounter;
-  int id;
-  bool isBaby;
-  String name;
-  List<Names> names;
-  int order;
-  List<PalParkEncounters> palParkEncounters;
-  List<PokedexNumbers> pokedexNumbers;
-  ObjPokemon shape;
-  List<Varieties> varieties;
+  int? baseHappiness;
+  int? captureRate;
+  ObjPokemon? color;
+  EvolutionChain? evolutionChain;
+  ObjPokemon? evolvesFromSpecies;
+  List<FlavorTextEntries>? flavorTextEntries;
+  bool? formsSwitchable;
+  int? genderRate;
+  List<Genera>? genera;
+  ObjPokemon? generation;
+  ObjPokemon? growthRate;
+  ObjPokemon? habitat;
+  bool? hasGenderDifferences;
+  int? hatchCounter;
+  int? id;
+  bool? isBaby;
+  String? name;
+  List<Names>? names;
+  int? order;
+  List<PalParkEncounters>? palParkEncounters;
+  List<PokedexNumbers>? pokedexNumbers;
+  ObjPokemon? shape;
+  List<Varieties>? varieties;
 
   Specie(
       {this.baseHappiness,
@@ -62,7 +62,7 @@ class Specie {
     if (json['flavor_text_entries'] != null) {
       flavorTextEntries = <FlavorTextEntries>[];
       json['flavor_text_entries'].forEach((v) {
-        flavorTextEntries.add(new FlavorTextEntries.fromJson(v));
+        flavorTextEntries!.add(new FlavorTextEntries.fromJson(v));
       });
     }
     formsSwitchable = json['forms_switchable'];
@@ -70,7 +70,7 @@ class Specie {
     if (json['genera'] != null) {
       genera = <Genera>[];
       json['genera'].forEach((v) {
-        genera.add(new Genera.fromJson(v));
+        genera!.add(new Genera.fromJson(v));
       });
     }
     generation = json['generation'] != null
@@ -87,20 +87,20 @@ class Specie {
     if (json['names'] != null) {
       names = <Names>[];
       json['names'].forEach((v) {
-        names.add(new Names.fromJson(v));
+        names!.add(new Names.fromJson(v));
       });
     }
     order = json['order'];
     if (json['pal_park_encounters'] != null) {
       palParkEncounters = <PalParkEncounters>[];
       json['pal_park_encounters'].forEach((v) {
-        palParkEncounters.add(new PalParkEncounters.fromJson(v));
+        palParkEncounters!.add(new PalParkEncounters.fromJson(v));
       });
     }
     if (json['pokedex_numbers'] != null) {
       pokedexNumbers = <PokedexNumbers>[];
       json['pokedex_numbers'].forEach((v) {
-        pokedexNumbers.add(new PokedexNumbers.fromJson(v));
+        pokedexNumbers!.add(new PokedexNumbers.fromJson(v));
       });
     }
     shape =
@@ -108,7 +108,7 @@ class Specie {
     if (json['varieties'] != null) {
       varieties = <Varieties>[];
       json['varieties'].forEach((v) {
-        varieties.add(new Varieties.fromJson(v));
+        varieties!.add(new Varieties.fromJson(v));
       });
     }
   }
@@ -118,29 +118,29 @@ class Specie {
     data['base_happiness'] = this.baseHappiness;
     data['capture_rate'] = this.captureRate;
     if (this.color != null) {
-      data['color'] = this.color.toJson();
+      data['color'] = this.color!.toJson();
     }
     if (this.evolutionChain != null) {
-      data['evolution_chain'] = this.evolutionChain.toJson();
+      data['evolution_chain'] = this.evolutionChain!.toJson();
     }
     data['evolves_from_species'] = this.evolvesFromSpecies;
     if (this.flavorTextEntries != null) {
       data['flavor_text_entries'] =
-          this.flavorTextEntries.map((v) => v.toJson()).toList();
+          this.flavorTextEntries!.map((v) => v.toJson()).toList();
     }
     data['forms_switchable'] = this.formsSwitchable;
     data['gender_rate'] = this.genderRate;
     if (this.genera != null) {
-      data['genera'] = this.genera.map((v) => v.toJson()).toList();
+      data['genera'] = this.genera!.map((v) => v.toJson()).toList();
     }
     if (this.generation != null) {
-      data['generation'] = this.generation.toJson();
+      data['generation'] = this.generation!.toJson();
     }
     if (this.growthRate != null) {
-      data['growth_rate'] = this.growthRate.toJson();
+      data['growth_rate'] = this.growthRate!.toJson();
     }
     if (this.habitat != null) {
-      data['habitat'] = this.habitat.toJson();
+      data['habitat'] = this.habitat!.toJson();
     }
     data['has_gender_differences'] = this.hasGenderDifferences;
     data['hatch_counter'] = this.hatchCounter;
@@ -148,30 +148,30 @@ class Specie {
     data['is_baby'] = this.isBaby;
     data['name'] = this.name;
     if (this.names != null) {
-      data['names'] = this.names.map((v) => v.toJson()).toList();
+      data['names'] = this.names!.map((v) => v.toJson()).toList();
     }
     data['order'] = this.order;
     if (this.palParkEncounters != null) {
       data['pal_park_encounters'] =
-          this.palParkEncounters.map((v) => v.toJson()).toList();
+          this.palParkEncounters!.map((v) => v.toJson()).toList();
     }
     if (this.pokedexNumbers != null) {
       data['pokedex_numbers'] =
-          this.pokedexNumbers.map((v) => v.toJson()).toList();
+          this.pokedexNumbers!.map((v) => v.toJson()).toList();
     }
     if (this.shape != null) {
-      data['shape'] = this.shape.toJson();
+      data['shape'] = this.shape!.toJson();
     }
     if (this.varieties != null) {
-      data['varieties'] = this.varieties.map((v) => v.toJson()).toList();
+      data['varieties'] = this.varieties!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class ObjPokemon {
-  String name;
-  String url;
+  String? name;
+  String? url;
 
   ObjPokemon({this.name, this.url});
 
@@ -189,7 +189,7 @@ class ObjPokemon {
 }
 
 class EvolutionChain {
-  String url;
+  String? url;
 
   EvolutionChain({this.url});
 
@@ -205,9 +205,9 @@ class EvolutionChain {
 }
 
 class FlavorTextEntries {
-  String flavorText;
-  ObjPokemon language;
-  ObjPokemon version;
+  String? flavorText;
+  ObjPokemon? language;
+  ObjPokemon? version;
 
   FlavorTextEntries({this.flavorText, this.language, this.version});
 
@@ -225,18 +225,18 @@ class FlavorTextEntries {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['flavor_text'] = this.flavorText;
     if (this.language != null) {
-      data['language'] = this.language.toJson();
+      data['language'] = this.language!.toJson();
     }
     if (this.version != null) {
-      data['version'] = this.version.toJson();
+      data['version'] = this.version!.toJson();
     }
     return data;
   }
 }
 
 class Genera {
-  String genus;
-  ObjPokemon language;
+  String? genus;
+  ObjPokemon? language;
 
   Genera({this.genus, this.language});
 
@@ -251,15 +251,15 @@ class Genera {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['genus'] = this.genus;
     if (this.language != null) {
-      data['language'] = this.language.toJson();
+      data['language'] = this.language!.toJson();
     }
     return data;
   }
 }
 
 class Names {
-  ObjPokemon language;
-  String name;
+  ObjPokemon? language;
+  String? name;
 
   Names({this.language, this.name});
 
@@ -273,7 +273,7 @@ class Names {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.language != null) {
-      data['language'] = this.language.toJson();
+      data['language'] = this.language!.toJson();
     }
     data['name'] = this.name;
     return data;
@@ -281,9 +281,9 @@ class Names {
 }
 
 class PalParkEncounters {
-  ObjPokemon area;
-  int baseScore;
-  int rate;
+  ObjPokemon? area;
+  int? baseScore;
+  int? rate;
 
   PalParkEncounters({this.area, this.baseScore, this.rate});
 
@@ -296,7 +296,7 @@ class PalParkEncounters {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.area != null) {
-      data['area'] = this.area.toJson();
+      data['area'] = this.area!.toJson();
     }
     data['base_score'] = this.baseScore;
     data['rate'] = this.rate;
@@ -305,8 +305,8 @@ class PalParkEncounters {
 }
 
 class PokedexNumbers {
-  int entryNumber;
-  ObjPokemon pokedex;
+  int? entryNumber;
+  ObjPokemon? pokedex;
 
   PokedexNumbers({this.entryNumber, this.pokedex});
 
@@ -321,15 +321,15 @@ class PokedexNumbers {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['entry_number'] = this.entryNumber;
     if (this.pokedex != null) {
-      data['pokedex'] = this.pokedex.toJson();
+      data['pokedex'] = this.pokedex!.toJson();
     }
     return data;
   }
 }
 
 class Varieties {
-  bool isDefault;
-  ObjPokemon pokemon;
+  bool? isDefault;
+  ObjPokemon? pokemon;
 
   Varieties({this.isDefault, this.pokemon});
 
@@ -344,7 +344,7 @@ class Varieties {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['is_default'] = this.isDefault;
     if (this.pokemon != null) {
-      data['pokemon'] = this.pokemon.toJson();
+      data['pokemon'] = this.pokemon!.toJson();
     }
     return data;
   }

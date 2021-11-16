@@ -16,10 +16,10 @@ class AboutPage extends StatefulWidget {
 
 class _AboutPageState extends State<AboutPage>
     with SingleTickerProviderStateMixin {
-  TabController _tabController;
-  PageController _pageController;
-  PokeApiStore _pokemonStore;
-  ReactionDisposer _disposer;
+  TabController? _tabController;
+  PageController? _pageController;
+  PokeApiStore? _pokemonStore;
+  late ReactionDisposer _disposer;
 
   @override
   void initState() {
@@ -29,8 +29,8 @@ class _AboutPageState extends State<AboutPage>
     _pageController = PageController(initialPage: 0);
 
     _disposer = reaction(
-      (f) => _pokemonStore.pokemonAtual,
-      (r) => _pageController.animateToPage(0,
+      (f) => _pokemonStore!.pokemonAtual,
+      (dynamic r) => _pageController!.animateToPage(0,
           duration: Duration(milliseconds: 300), curve: Curves.easeInOut),
     );
   }
@@ -53,7 +53,7 @@ class _AboutPageState extends State<AboutPage>
           child: Observer(builder: (context) {
             return TabBar(
               onTap: (index) {
-                _pageController.animateToPage(index,
+                _pageController!.animateToPage(index,
                     duration: Duration(milliseconds: 300),
                     curve: Curves.easeInOut);
               },
@@ -62,13 +62,13 @@ class _AboutPageState extends State<AboutPage>
                   //up to your taste
                   fontWeight: FontWeight.w700),
               indicatorSize: TabBarIndicatorSize.label, //makes it better
-              labelColor: _pokemonStore.corPokemon, //Google's sweet blue
+              labelColor: _pokemonStore!.corPokemon, //Google's sweet blue
               unselectedLabelColor: Color(0xff5f6368), //niceish grey
               isScrollable: true, //up to your taste
               indicator: MD2Indicator(
                   //it begins here
                   indicatorHeight: 3,
-                  indicatorColor: _pokemonStore.corPokemon,
+                  indicatorColor: _pokemonStore!.corPokemon,
                   indicatorSize: MD2IndicatorSize
                       .normal //3 different modes tiny-normal-full
                   ),
@@ -89,7 +89,7 @@ class _AboutPageState extends State<AboutPage>
       ),
       body: PageView(
         onPageChanged: (index) {
-          _tabController.animateTo(index,
+          _tabController!.animateTo(index,
               duration: Duration(milliseconds: 300));
         },
         controller: _pageController,

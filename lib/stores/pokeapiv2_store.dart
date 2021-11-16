@@ -13,10 +13,10 @@ class PokeApiV2Store = _PokeApiV2StoreBase with _$PokeApiV2Store;
 
 abstract class _PokeApiV2StoreBase with Store {
   @observable
-  Specie specie;
+  Specie? specie;
 
   @observable
-  PokemonDetailModel pokeApiV2;
+  PokemonDetailModel? pokeApiV2;
 
   @action
   Future<void> getInfoPokemon(String nome) async {

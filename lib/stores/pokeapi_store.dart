@@ -14,22 +14,22 @@ class PokeApiStore = _PokeApiStoreBase with _$PokeApiStore;
 
 abstract class _PokeApiStoreBase with Store {
   @observable
-  PokeListModel _pokeAPI;
+  PokeListModel? _pokeAPI;
 
   @observable
-  Pokemon _pokemonAtual;
+  Pokemon? _pokemonAtual;
 
   @observable
   dynamic corPokemon;
 
   @observable
-  int posicaoAtual;
+  int? posicaoAtual;
 
   @computed
-  PokeListModel get pokeAPI => _pokeAPI;
+  PokeListModel? get pokeAPI => _pokeAPI;
 
   @computed
-  Pokemon get pokemonAtual => _pokemonAtual;
+  Pokemon? get pokemonAtual => _pokemonAtual;
 
   @action
   void fetchPokemonList() {
@@ -39,25 +39,25 @@ abstract class _PokeApiStoreBase with Store {
     });
   }
 
-  Pokemon getPokemon({int index}) {
-    return _pokeAPI.pokemon[index];
+  Pokemon getPokemon({required int index}) {
+    return _pokeAPI!.pokemon![index];
   }
 
   @action
-  void setPokemonAtual({int index}) {
-    _pokemonAtual = _pokeAPI.pokemon[index];
-    corPokemon = ConstsApp.getColorType(type: _pokemonAtual.type[0]);
+  void setPokemonAtual({required int index}) {
+    _pokemonAtual = _pokeAPI!.pokemon![index];
+    corPokemon = ConstsApp.getColorType(type: _pokemonAtual!.type![0]);
     posicaoAtual = index;
   }
 
   @action
-  Widget getImage({String numero}) {
+  Widget getImage({String? numero}) {
     return Image.network(
       'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$numero.png',
     );
   }
 
-  Future<PokeListModel> loadPokeAPI() async {
+  Future<PokeListModel?> loadPokeAPI() async {
     try {
       final response = await http.get(Uri(path: ConstsAPI.pokeapiURL));
       var decodeJson = jsonDecode(response.body);

@@ -15,14 +15,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  PokeApiStore _pokemonStore;
+  PokeApiStore? _pokemonStore;
 
   @override
   void initState() {
     super.initState();
     _pokemonStore = GetIt.instance<PokeApiStore>();
-    if (_pokemonStore.pokeAPI == null) {
-      _pokemonStore.fetchPokemonList();
+    if (_pokemonStore!.pokeAPI == null) {
+      _pokemonStore!.fetchPokemonList();
     }
   }
 
@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                     child: Observer(
                       name: 'ListaHomePage',
                       builder: (BuildContext context) {
-                        return (_pokemonStore.pokeAPI != null)
+                        return (_pokemonStore!.pokeAPI != null)
                             ? AnimationLimiter(
                                 child: GridView.builder(
                                   physics: BouncingScrollPhysics(),
@@ -70,10 +70,10 @@ class _HomePageState extends State<HomePage> {
                                       new SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 2),
                                   itemCount:
-                                      _pokemonStore.pokeAPI.pokemon.length,
+                                      _pokemonStore!.pokeAPI!.pokemon!.length,
                                   itemBuilder: (context, index) {
                                     Pokemon pokemon =
-                                        _pokemonStore.getPokemon(index: index);
+                                        _pokemonStore!.getPokemon(index: index);
                                     return AnimationConfiguration.staggeredGrid(
                                       position: index,
                                       duration:
@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                                             num: pokemon.num,
                                           ),
                                           onTap: () {
-                                            _pokemonStore.setPokemonAtual(
+                                            _pokemonStore!.setPokemonAtual(
                                                 index: index);
                                             Navigator.push(
                                               context,

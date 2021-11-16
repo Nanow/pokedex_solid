@@ -6,14 +6,14 @@ import '../../../models/pokemon_detail_model.dart';
 import '../../../stores/pokeapiv2_store.dart';
 
 class AbaStatus extends StatelessWidget {
-  final PokeApiV2Store _pokeApiV2Store = GetIt.instance<PokeApiV2Store>();
+  final PokeApiV2Store? _pokeApiV2Store = GetIt.instance<PokeApiV2Store>();
 
-  List<int> getStatusPokemon(PokemonDetailModel pokeApiV2) {
-    List<int> list = [1, 2, 3, 4, 5, 6, 7];
+  List<int?> getStatusPokemon(PokemonDetailModel pokeApiV2) {
+    List<int?> list = [1, 2, 3, 4, 5, 6, 7];
     int sum = 0;
-    pokeApiV2.stats.forEach((f) {
-      sum = sum + f.baseStat;
-      switch (f.stat.name) {
+    pokeApiV2.stats!.forEach((f) {
+      sum = sum + f.baseStat!;
+      switch (f.stat!.name) {
         case 'speed':
           list[0] = f.baseStat;
           break;
@@ -104,7 +104,7 @@ class AbaStatus extends StatelessWidget {
                   width: 10,
                 ),
                 Observer(builder: (context) {
-                  List<int> _list = getStatusPokemon(_pokeApiV2Store.pokeApiV2);
+                  List<int?> _list = getStatusPokemon(_pokeApiV2Store!.pokeApiV2!);
                   return Column(
                     children: <Widget>[
                       Text(
@@ -170,47 +170,47 @@ class AbaStatus extends StatelessWidget {
                   width: 10,
                 ),
                 Observer(builder: (context) {
-                  List<int> _list = getStatusPokemon(_pokeApiV2Store.pokeApiV2);
+                  List<int?> _list = getStatusPokemon(_pokeApiV2Store!.pokeApiV2!);
                   return Column(
                     children: <Widget>[
                       StatusBar(
-                        widthFactor: _list[0] / 160,
+                        widthFactor: _list[0]! / 160,
                       ),
                       SizedBox(
                         height: 10,
                       ),
                       StatusBar(
-                        widthFactor: _list[1] / 160,
+                        widthFactor: _list[1]! / 160,
                       ),
                       SizedBox(
                         height: 10,
                       ),
                       StatusBar(
-                        widthFactor: _list[2] / 160,
+                        widthFactor: _list[2]! / 160,
                       ),
                       SizedBox(
                         height: 10,
                       ),
                       StatusBar(
-                        widthFactor: _list[3] / 160,
+                        widthFactor: _list[3]! / 160,
                       ),
                       SizedBox(
                         height: 10,
                       ),
                       StatusBar(
-                        widthFactor: _list[4] / 160,
+                        widthFactor: _list[4]! / 160,
                       ),
                       SizedBox(
                         height: 10,
                       ),
                       StatusBar(
-                        widthFactor: _list[5] / 160,
+                        widthFactor: _list[5]! / 160,
                       ),
                       SizedBox(
                         height: 10,
                       ),
                       StatusBar(
-                        widthFactor: _list[6] / 600,
+                        widthFactor: _list[6]! / 600,
                       ),
                     ],
                   );
@@ -225,9 +225,9 @@ class AbaStatus extends StatelessWidget {
 }
 
 class StatusBar extends StatelessWidget {
-  final double widthFactor;
+  final double? widthFactor;
 
-  const StatusBar({Key key, this.widthFactor}) : super(key: key);
+  const StatusBar({Key? key, this.widthFactor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -248,7 +248,7 @@ class StatusBar extends StatelessWidget {
             child: Container(
               decoration: ShapeDecoration(
                 shape: StadiumBorder(),
-                color: widthFactor > 0.5 ? Colors.teal : Colors.red,
+                color: widthFactor! > 0.5 ? Colors.teal : Colors.red,
               ),
             ),
           ),
