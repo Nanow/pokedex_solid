@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:pokedex_youtube/models/pokemon_model.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 
 import '../../consts/consts_app.dart';
-import '../../models/pokeon_list_model.dart';
 import '../../stores/pokeapi_store.dart';
 import '../../stores/pokeapiv2_store.dart';
 import '../about_page/about_page.dart';
@@ -139,7 +139,8 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                             children: <Widget>[
                               setTipos(_pokemonStore!.pokemonAtual!.type!),
                               Text(
-                                '#' + _pokemonStore!.pokemonAtual!.num.toString(),
+                                '#' +
+                                    _pokemonStore!.pokemonAtual!.num.toString(),
                                 style: TextStyle(
                                     fontFamily: 'Google',
                                     fontSize: 26,
@@ -200,7 +201,8 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                   },
                   itemCount: _pokemonStore!.pokeAPI!.pokemon!.length,
                   itemBuilder: (BuildContext context, int index) {
-                    Pokemon _pokeitem = _pokemonStore!.getPokemon(index: index);
+                    PokemonModel _pokeitem =
+                        _pokemonStore!.getPokemon(index: index);
                     return Stack(
                       alignment: Alignment.center,
                       children: <Widget>[
@@ -219,9 +221,10 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                                   children: <Widget>[
                                     AnimatedPadding(
                                       child: Hero(
-                                        tag: index == _pokemonStore!.posicaoAtual
-                                            ? _pokeitem.name!
-                                            : 'none' + index.toString(),
+                                        tag:
+                                            index == _pokemonStore!.posicaoAtual
+                                                ? _pokeitem.name!
+                                                : 'none' + index.toString(),
                                         child: Image.network(
                                           'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${_pokeitem.num}.png',
                                           height: 160,

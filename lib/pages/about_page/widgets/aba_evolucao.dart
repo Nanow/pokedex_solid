@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import '../../../models/pokeon_list_model.dart';
+import 'package:pokedex_youtube/models/pokemon_model.dart';
+
 import '../../../stores/pokeapi_store.dart';
 
 class AbaEvolucao extends StatelessWidget {
@@ -11,11 +12,11 @@ class AbaEvolucao extends StatelessWidget {
     return SizedBox(height: 80, width: 80, child: widget);
   }
 
-  List<Widget> getEvolucao(Pokemon pokemon) {
+  List<Widget> getEvolucao(PokemonModel pokemon) {
     List<Widget> _list = [];
     if (pokemon.prevEvolution != null) {
       pokemon.prevEvolution!.forEach((f) {
-        _list.add(resizePokemon(_pokeApiStore!.getImage(numero: f.num)));
+        _list.add(resizePokemon(_pokeApiStore!.getImage(numero: f.number)));
         _list.add(
           Padding(
             padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
@@ -49,8 +50,7 @@ class AbaEvolucao extends StatelessWidget {
     if (pokemon.nextEvolution != null) {
       _list.add(Icon(Icons.keyboard_arrow_down));
       pokemon.nextEvolution!.forEach((f) {
-        _list.add(
-            resizePokemon(_pokeApiStore!.getImage(numero: f.pokemonNumber)));
+        _list.add(resizePokemon(_pokeApiStore!.getImage(numero: f.number)));
         _list.add(
           Padding(
             padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
@@ -78,7 +78,7 @@ class AbaEvolucao extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
         child: Observer(builder: (context) {
-          Pokemon pokemon = _pokeApiStore!.pokemonAtual!;
+          PokemonModel pokemon = _pokeApiStore!.pokemonAtual!;
           return SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,

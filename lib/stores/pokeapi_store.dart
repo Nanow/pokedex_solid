@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:mobx/mobx.dart';
+import 'package:pokedex_youtube/models/pokemon_model.dart';
 
 import '../consts/consts_app.dart';
 import '../models/pokeon_list_model.dart';
@@ -16,7 +17,7 @@ abstract class _PokeApiStoreBase with Store {
   PokeListModel? _pokeAPI;
 
   @observable
-  Pokemon? _pokemonAtual;
+  PokemonModel? _pokemonAtual;
 
   @observable
   dynamic corPokemon;
@@ -28,7 +29,7 @@ abstract class _PokeApiStoreBase with Store {
   PokeListModel? get pokeAPI => _pokeAPI;
 
   @computed
-  Pokemon? get pokemonAtual => _pokemonAtual;
+  PokemonModel? get pokemonAtual => _pokemonAtual;
 
   @action
   void fetchPokemonList() {
@@ -38,7 +39,7 @@ abstract class _PokeApiStoreBase with Store {
     });
   }
 
-  Pokemon getPokemon({required int index}) {
+  PokemonModel getPokemon({required int index}) {
     return _pokeAPI!.pokemon![index];
   }
 

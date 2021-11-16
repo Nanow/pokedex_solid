@@ -16,13 +16,13 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
       (_$pokeAPIComputed ??= Computed<PokeListModel?>(() => super.pokeAPI,
               name: '_PokeApiStoreBase.pokeAPI'))
           .value;
-  Computed<Pokemon?>? _$pokemonAtualComputed;
+  Computed<PokemonModel?>? _$pokemonAtualComputed;
 
   @override
-  Pokemon? get pokemonAtual =>
-      (_$pokemonAtualComputed ??= Computed<Pokemon?>(() => super.pokemonAtual,
+  PokemonModel? get pokemonAtual => (_$pokemonAtualComputed ??=
+          Computed<PokemonModel?>(() => super.pokemonAtual,
               name: '_PokeApiStoreBase.pokemonAtual'))
-          .value;
+      .value;
 
   final _$_pokeAPIAtom = Atom(name: '_PokeApiStoreBase._pokeAPI');
 
@@ -42,13 +42,13 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   final _$_pokemonAtualAtom = Atom(name: '_PokeApiStoreBase._pokemonAtual');
 
   @override
-  Pokemon? get _pokemonAtual {
+  PokemonModel? get _pokemonAtual {
     _$_pokemonAtualAtom.reportRead();
     return super._pokemonAtual;
   }
 
   @override
-  set _pokemonAtual(Pokemon? value) {
+  set _pokemonAtual(PokemonModel? value) {
     _$_pokemonAtualAtom.reportWrite(value, super._pokemonAtual, () {
       super._pokemonAtual = value;
     });
