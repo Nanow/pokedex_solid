@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pokedex_youtube/models/pokeapi.dart';
+import 'package:pokedex_youtube/models/pokeon_list_model.dart';
 import 'package:pokedex_youtube/stores/pokeapi_store.dart';
 
 class AbaEvolucao extends StatelessWidget {
@@ -49,7 +49,8 @@ class AbaEvolucao extends StatelessWidget {
     if (pokemon.nextEvolution != null) {
       _list.add(Icon(Icons.keyboard_arrow_down));
       pokemon.nextEvolution.forEach((f) {
-        _list.add(resizePokemon(_pokeApiStore.getImage(numero: f.num)));
+        _list.add(
+            resizePokemon(_pokeApiStore.getImage(numero: f.pokemonNumber)));
         _list.add(
           Padding(
             padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),

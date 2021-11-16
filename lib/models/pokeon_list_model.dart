@@ -1,9 +1,9 @@
-class PokeAPI {
+class PokeListModel {
   List<Pokemon> pokemon;
 
-  PokeAPI({this.pokemon});
+  PokeListModel({this.pokemon});
 
-  PokeAPI.fromJson(Map<String, dynamic> json) {
+  PokeListModel.fromJson(Map<String, dynamic> json) {
     if (json['pokemon'] != null) {
       pokemon = <Pokemon>[];
       json['pokemon'].forEach((v) {
@@ -95,19 +95,19 @@ class Pokemon {
 }
 
 class NextEvolution {
-  String num;
+  String pokemonNumber;
   String name;
 
-  NextEvolution({this.num, this.name});
+  NextEvolution({this.pokemonNumber, this.name});
 
   NextEvolution.fromJson(Map<String, dynamic> json) {
-    num = json['num'];
+    pokemonNumber = json['num'];
     name = json['name'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['num'] = this.num;
+    data['num'] = this.pokemonNumber;
     data['name'] = this.name;
     return data;
   }

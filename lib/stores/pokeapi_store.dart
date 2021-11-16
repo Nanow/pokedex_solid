@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:mobx/mobx.dart';
 import 'package:pokedex_youtube/consts/consts_api.dart';
 import 'package:pokedex_youtube/consts/consts_app.dart';
-import 'package:pokedex_youtube/models/pokeapi.dart';
+import 'package:pokedex_youtube/models/pokeon_list_model.dart';
 
 part 'pokeapi_store.g.dart';
 
@@ -13,7 +13,7 @@ class PokeApiStore = _PokeApiStoreBase with _$PokeApiStore;
 
 abstract class _PokeApiStoreBase with Store {
   @observable
-  PokeAPI _pokeAPI;
+  PokeListModel _pokeAPI;
 
   @observable
   Pokemon _pokemonAtual;
@@ -25,7 +25,7 @@ abstract class _PokeApiStoreBase with Store {
   int posicaoAtual;
 
   @computed
-  PokeAPI get pokeAPI => _pokeAPI;
+  PokeListModel get pokeAPI => _pokeAPI;
 
   @computed
   Pokemon get pokemonAtual => _pokemonAtual;
@@ -56,11 +56,11 @@ abstract class _PokeApiStoreBase with Store {
     );
   }
 
-  Future<PokeAPI> loadPokeAPI() async {
+  Future<PokeListModel> loadPokeAPI() async {
     try {
       final response = await http.get(ConstsAPI.pokeapiURL);
       var decodeJson = jsonDecode(response.body);
-      return PokeAPI.fromJson(decodeJson);
+      return PokeListModel.fromJson(decodeJson);
     } catch (error, stacktrace) {
       print("Erro ao carregar lista" + stacktrace.toString());
       return null;

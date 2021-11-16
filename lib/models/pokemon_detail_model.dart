@@ -1,7 +1,8 @@
-class PokeApiV2 {
+class PokemonDetailModel {
   List<Abilities> abilities;
   int baseExperience;
   List<GameIndices> gameIndices;
+  List<Null> heldItems;
   int height;
   int id;
   bool isDefault;
@@ -14,23 +15,25 @@ class PokeApiV2 {
   List<Types> types;
   int weight;
 
-  PokeApiV2(
-      {this.abilities,
-      this.baseExperience,
-      this.gameIndices,
-      this.height,
-      this.id,
-      this.isDefault,
-      this.locationAreaEncounters,
-      this.moves,
-      this.name,
-      this.order,
-      this.species,
-      this.stats,
-      this.types,
-      this.weight});
+  PokemonDetailModel({
+    this.abilities,
+    this.baseExperience,
+    this.gameIndices,
+    this.heldItems,
+    this.height,
+    this.id,
+    this.isDefault,
+    this.locationAreaEncounters,
+    this.moves,
+    this.name,
+    this.order,
+    this.species,
+    this.stats,
+    this.types,
+    this.weight,
+  });
 
-  PokeApiV2.fromJson(Map<String, dynamic> json) {
+  PokemonDetailModel.fromJson(Map<String, dynamic> json) {
     if (json['abilities'] != null) {
       abilities = <Abilities>[];
       json['abilities'].forEach((v) {

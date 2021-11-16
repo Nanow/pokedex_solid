@@ -29,14 +29,14 @@ mixin _$PokeApiV2Store on _PokeApiV2StoreBase, Store {
   final _$pokeApiV2Atom = Atom(name: '_PokeApiV2StoreBase.pokeApiV2');
 
   @override
-  PokeApiV2 get pokeApiV2 {
+  PokemonDetailModel get pokeApiV2 {
     _$pokeApiV2Atom.context.enforceReadPolicy(_$pokeApiV2Atom);
     _$pokeApiV2Atom.reportObserved();
     return super.pokeApiV2;
   }
 
   @override
-  set pokeApiV2(PokeApiV2 value) {
+  set pokeApiV2(PokemonDetailModel value) {
     _$pokeApiV2Atom.context.conditionallyRunInAction(() {
       super.pokeApiV2 = value;
       _$pokeApiV2Atom.reportChanged();

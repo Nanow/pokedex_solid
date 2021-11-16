@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex_youtube/consts/consts_app.dart';
-import 'package:pokedex_youtube/models/pokeapi.dart';
+import 'package:pokedex_youtube/models/pokeon_list_model.dart';
 import 'package:pokedex_youtube/pages/about_page/about_page.dart';
 import 'package:pokedex_youtube/stores/pokeapi_store.dart';
 import 'package:pokedex_youtube/stores/pokeapiv2_store.dart';
@@ -65,13 +65,15 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
             builder: (context) {
               return AnimatedContainer(
                 decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
                       _pokemonStore.corPokemon.withOpacity(0.7),
                       _pokemonStore.corPokemon,
-                    ])),
+                    ],
+                  ),
+                ),
                 child: Stack(
                   children: <Widget>[
                     AppBar(
@@ -169,12 +171,14 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
           ),
           SlidingSheet(
             listener: (state) {
-              setState(() {
-                _progress = state.progress;
-                _multiple = 1 - interval(0.60, 0.87, _progress);
-                _opacity = _multiple;
-                _opacityTitleAppBar = interval(0.60, 0.87, _progress);
-              });
+              setState(
+                () {
+                  _progress = state.progress;
+                  _multiple = 1 - interval(0.60, 0.87, _progress);
+                  _opacity = _multiple;
+                  _opacityTitleAppBar = interval(0.60, 0.87, _progress);
+                },
+              );
             },
             elevation: 0,
             cornerRadius: 30,

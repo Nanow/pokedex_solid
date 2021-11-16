@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex_youtube/consts/consts_app.dart';
-import 'package:pokedex_youtube/models/pokeapi.dart';
+import 'package:pokedex_youtube/models/pokeon_list_model.dart';
 import 'package:pokedex_youtube/pages/home_page/widgets/app_bar_home.dart';
 import 'package:pokedex_youtube/pages/home_page/widgets/poke_item.dart';
 import 'package:pokedex_youtube/pages/poke_detail/poke_detail_page.dart';

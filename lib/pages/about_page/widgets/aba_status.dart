@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pokedex_youtube/models/pokeapiv2.dart';
+import 'package:pokedex_youtube/models/pokemon_detail_model.dart';
 import 'package:pokedex_youtube/stores/pokeapiv2_store.dart';
 
 class AbaStatus extends StatelessWidget {
   final PokeApiV2Store _pokeApiV2Store = GetIt.instance<PokeApiV2Store>();
 
-  List<int> getStatusPokemon(PokeApiV2 pokeApiV2) {
+  List<int> getStatusPokemon(PokemonDetailModel pokeApiV2) {
     List<int> list = [1, 2, 3, 4, 5, 6, 7];
     int sum = 0;
     pokeApiV2.stats.forEach((f) {

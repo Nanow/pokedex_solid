@@ -9,11 +9,12 @@ part of 'pokeapi_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PokeApiStore on _PokeApiStoreBase, Store {
-  Computed<PokeAPI> _$pokeAPIComputed;
+  Computed<PokeListModel> _$pokeAPIComputed;
 
   @override
-  PokeAPI get pokeAPI =>
-      (_$pokeAPIComputed ??= Computed<PokeAPI>(() => super.pokeAPI)).value;
+  PokeListModel get pokeAPI =>
+      (_$pokeAPIComputed ??= Computed<PokeListModel>(() => super.pokeAPI))
+          .value;
   Computed<Pokemon> _$pokemonAtualComputed;
 
   @override
@@ -24,14 +25,14 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   final _$_pokeAPIAtom = Atom(name: '_PokeApiStoreBase._pokeAPI');
 
   @override
-  PokeAPI get _pokeAPI {
+  PokeListModel get _pokeAPI {
     _$_pokeAPIAtom.context.enforceReadPolicy(_$_pokeAPIAtom);
     _$_pokeAPIAtom.reportObserved();
     return super._pokeAPI;
   }
 
   @override
-  set _pokeAPI(PokeAPI value) {
+  set _pokeAPI(PokeListModel value) {
     _$_pokeAPIAtom.context.conditionallyRunInAction(() {
       super._pokeAPI = value;
       _$_pokeAPIAtom.reportChanged();
