@@ -2,9 +2,10 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:mobx/mobx.dart';
-import 'package:pokedex_youtube/consts/consts_api.dart';
-import 'package:pokedex_youtube/models/pokemon_detail_model.dart';
-import 'package:pokedex_youtube/models/specie.dart';
+
+import '../consts/consts_api.dart';
+import '../models/pokemon_detail_model.dart';
+import '../models/specie.dart';
 
 part 'pokeapiv2_store.g.dart';
 
@@ -20,8 +21,8 @@ abstract class _PokeApiV2StoreBase with Store {
   @action
   Future<void> getInfoPokemon(String nome) async {
     try {
-      final response =
-          await http.get(ConstsAPI.pokeapiv2URL + nome.toLowerCase());
+      final response = await http
+          .get(Uri(path: ConstsAPI.pokeapiv2URL + nome.toLowerCase()));
       var decodeJson = jsonDecode(response.body);
       pokeApiV2 = PokemonDetailModel.fromJson(decodeJson);
     } catch (error, stacktrace) {
@@ -34,8 +35,8 @@ abstract class _PokeApiV2StoreBase with Store {
   Future<void> getInfoSpecie(String numPokemon) async {
     try {
       specie = null;
-      final response =
-          await http.get(ConstsAPI.pokeapiv2EspeciesURL + numPokemon);
+      final response = await http
+          .get(Uri(path: ConstsAPI.pokeapiv2EspeciesURL + numPokemon));
       var decodeJson = jsonDecode(response.body);
       var _specie = Specie.fromJson(decodeJson);
       specie = _specie;

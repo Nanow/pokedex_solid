@@ -19,21 +19,22 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  mobx:
-  flutter_mobx:
-  md2_tab_indicator: ^1.0.2
-  flutter_staggered_animations: "^0.1.2"
-  sliding_sheet: ^0.2.4
-  flutter_icons: ^1.0.0+1
-  intl: ^0.16.1
-  http: ^0.12.0+4
-  get_it: ^3.1.0
-  simple_animations: ^1.3.6
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.2
-
+  cupertino_icons: ^1.0.2
+  mobx: ^2.0.5
+  flutter_staggered_animations: ^1.0.0
+  flutter_mobx: ^2.0.2
+  sliding_sheet: ^0.5.2
+  flutter_font_icons: ^2.2.4
+  http: ^0.13.4
+  get_it: ^7.2.0
+  md2_tab_indicator:
+    git:
+      url: git://github.com/westdabestdb/md2_tab_indicator.git
+      ref: master
+      
 dev_dependencies:
   flutter_test:
     sdk: flutter

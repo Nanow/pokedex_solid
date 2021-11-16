@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pokedex_youtube/consts/consts_app.dart';
-import 'package:pokedex_youtube/models/pokeon_list_model.dart';
-import 'package:pokedex_youtube/pages/about_page/about_page.dart';
-import 'package:pokedex_youtube/stores/pokeapi_store.dart';
-import 'package:pokedex_youtube/stores/pokeapiv2_store.dart';
-import 'package:simple_animations/simple_animations/controlled_animation.dart';
-import 'package:simple_animations/simple_animations/multi_track_tween.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
+
+import '../../consts/consts_app.dart';
+import '../../models/pokeon_list_model.dart';
+import '../../stores/pokeapi_store.dart';
+import '../../stores/pokeapiv2_store.dart';
+import '../about_page/about_page.dart';
 
 class PokeDetailPage extends StatefulWidget {
   final int index;
@@ -22,7 +21,7 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
   PageController _pageController;
   PokeApiStore _pokemonStore;
   PokeApiV2Store _pokeApiV2Store;
-  MultiTrackTween _animation;
+  // MultiTrackTween _animation;
   double _progress;
   double _multiple;
   double _opacity;
@@ -37,10 +36,10 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
     _pokeApiV2Store = GetIt.instance<PokeApiV2Store>();
     _pokeApiV2Store.getInfoPokemon(_pokemonStore.pokemonAtual.name);
     _pokeApiV2Store.getInfoSpecie(_pokemonStore.pokemonAtual.id.toString());
-    _animation = MultiTrackTween([
-      Track("rotation").add(Duration(seconds: 5), Tween(begin: 0.0, end: 6.0),
-          curve: Curves.linear)
-    ]);
+    // _animation = MultiTrackTween([
+    //   Track("rotation").add(Duration(seconds: 5), Tween(begin: 0.0, end: 6.0),
+    //       curve: Curves.linear)
+    // ]);
     _progress = 0;
     _multiple = 1;
     _opacity = 1;
@@ -90,26 +89,15 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                         Stack(
                           alignment: Alignment.center,
                           children: <Widget>[
-                            ControlledAnimation(
-                                playback: Playback.LOOP,
-                                duration: _animation.duration,
-                                tween: _animation,
-                                builder: (context, animation) {
-                                  return Transform.rotate(
-                                    child: AnimatedOpacity(
-                                      duration: Duration(milliseconds: 200),
-                                      child: Image.asset(
-                                        ConstsApp.whitePokeball,
-                                        height: 50,
-                                        width: 50,
-                                      ),
-                                      opacity: _opacityTitleAppBar >= 0.2
-                                          ? 0.2
-                                          : 0.0,
-                                    ),
-                                    angle: animation['rotation'],
-                                  );
-                                }),
+                            AnimatedOpacity(
+                              duration: Duration(milliseconds: 200),
+                              child: Image.asset(
+                                ConstsApp.whitePokeball,
+                                height: 50,
+                                width: 50,
+                              ),
+                              opacity: _opacityTitleAppBar >= 0.2 ? 0.2 : 0.0,
+                            ),
                             IconButton(
                               icon: Icon(Icons.favorite_border),
                               onPressed: () {
@@ -216,26 +204,11 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                     return Stack(
                       alignment: Alignment.center,
                       children: <Widget>[
-                        ControlledAnimation(
-                            playback: Playback.LOOP,
-                            duration: _animation.duration,
-                            tween: _animation,
-                            builder: (context, animation) {
-                              return Transform.rotate(
-                                child: AnimatedOpacity(
-                                  child: Image.asset(
-                                    ConstsApp.whitePokeball,
-                                    height: 270,
-                                    width: 270,
-                                  ),
-                                  opacity: index == _pokemonStore.posicaoAtual
-                                      ? 0.2
-                                      : 0,
-                                  duration: Duration(milliseconds: 200),
-                                ),
-                                angle: animation['rotation'],
-                              );
-                            }),
+                        Image.asset(
+                          ConstsApp.whitePokeball,
+                          height: 270,
+                          width: 270,
+                        ),
                         IgnorePointer(
                           child: Observer(
                               name: 'Pokemon',

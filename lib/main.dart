@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pokedex_youtube/pages/home_page/home_page.dart';
-import 'package:pokedex_youtube/stores/pokeapi_store.dart';
-import 'package:pokedex_youtube/stores/pokeapiv2_store.dart';
+
+import 'pages/home_page/home_page.dart';
+import 'stores/pokeapi_store.dart';
+import 'stores/pokeapiv2_store.dart';
 
 void main() {
   GetIt getIt = GetIt.instance;

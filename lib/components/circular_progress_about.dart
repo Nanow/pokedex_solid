@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pokedex_youtube/stores/pokeapi_store.dart';
+import '../stores/pokeapi_store.dart';
 
 class CircularProgressAbout extends StatelessWidget {
   @override

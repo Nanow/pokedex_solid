@@ -3,10 +3,11 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:md2_tab_indicator/md2_tab_indicator.dart';
 import 'package:mobx/mobx.dart';
-import 'package:pokedex_youtube/pages/about_page/widgets/aba_evolucao.dart';
-import 'package:pokedex_youtube/pages/about_page/widgets/aba_sobre.dart';
-import 'package:pokedex_youtube/pages/about_page/widgets/aba_status.dart';
-import 'package:pokedex_youtube/stores/pokeapi_store.dart';
+
+import '../../stores/pokeapi_store.dart';
+import 'widgets/aba_evolucao.dart';
+import 'widgets/aba_sobre.dart';
+import 'widgets/aba_status.dart';
 
 class AboutPage extends StatefulWidget {
   @override

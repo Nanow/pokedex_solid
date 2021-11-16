@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pokedex_youtube/models/pokemon_detail_model.dart';
-import 'package:pokedex_youtube/stores/pokeapiv2_store.dart';
+
+import '../../../models/pokemon_detail_model.dart';
+import '../../../stores/pokeapiv2_store.dart';
 
 class AbaStatus extends StatelessWidget {
   final PokeApiV2Store _pokeApiV2Store = GetIt.instance<PokeApiV2Store>();

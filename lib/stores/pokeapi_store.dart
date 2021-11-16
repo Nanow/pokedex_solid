@@ -3,9 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:mobx/mobx.dart';
-import 'package:pokedex_youtube/consts/consts_api.dart';
-import 'package:pokedex_youtube/consts/consts_app.dart';
-import 'package:pokedex_youtube/models/pokeon_list_model.dart';
+
+import '../consts/consts_api.dart';
+import '../consts/consts_app.dart';
+import '../models/pokeon_list_model.dart';
 
 part 'pokeapi_store.g.dart';
 
@@ -43,7 +44,7 @@ abstract class _PokeApiStoreBase with Store {
   }
 
   @action
-  setPokemonAtual({int index}) {
+  void setPokemonAtual({int index}) {
     _pokemonAtual = _pokeAPI.pokemon[index];
     corPokemon = ConstsApp.getColorType(type: _pokemonAtual.type[0]);
     posicaoAtual = index;
@@ -58,7 +59,7 @@ abstract class _PokeApiStoreBase with Store {
 
   Future<PokeListModel> loadPokeAPI() async {
     try {
-      final response = await http.get(ConstsAPI.pokeapiURL);
+      final response = await http.get(Uri(path: ConstsAPI.pokeapiURL));
       var decodeJson = jsonDecode(response.body);
       return PokeListModel.fromJson(decodeJson);
     } catch (error, stacktrace) {

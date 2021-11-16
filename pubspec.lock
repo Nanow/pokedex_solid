@@ -161,7 +161,7 @@ packages:
       name: cupertino_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.3"
+    version: "1.0.4"
   dart_style:
     dependency: transitive
     description:
@@ -195,13 +195,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_icons:
+  flutter_font_icons:
     dependency: "direct main"
     description:
-      name: flutter_icons
+      name: flutter_font_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "2.2.4"
   flutter_mobx:
     dependency: "direct main"
     description:
@@ -215,7 +215,7 @@ packages:
       name: flutter_staggered_animations
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.3"
+    version: "1.0.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -227,7 +227,7 @@ packages:
       name: get_it
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.0"
+    version: "7.2.0"
   glob:
     dependency: transitive
     description:
@@ -248,7 +248,7 @@ packages:
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.2"
+    version: "0.13.4"
   http_multi_server:
     dependency: transitive
     description:
@@ -262,14 +262,7 @@ packages:
       name: http_parser
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.4"
-  intl:
-    dependency: "direct main"
-    description:
-      name: intl
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.16.1"
+    version: "4.0.0"
   io:
     dependency: transitive
     description:
@@ -308,10 +301,12 @@ packages:
   md2_tab_indicator:
     dependency: "direct main"
     description:
-      name: md2_tab_indicator
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.2"
+      path: "."
+      ref: master
+      resolved-ref: "1097deb4f4018c408fd4745711efb8f0ea9044e7"
+      url: "git://github.com/westdabestdb/md2_tab_indicator.git"
+    source: git
+    version: "2.0.0"
   meta:
     dependency: transitive
     description:
@@ -388,7 +383,7 @@ packages:
       name: shelf
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.9"
+    version: "1.2.0"
   shelf_web_socket:
     dependency: transitive
     description:
@@ -396,13 +391,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.4+1"
-  simple_animations:
-    dependency: "direct main"
-    description:
-      name: simple_animations
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.3.12"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -414,7 +402,7 @@ packages:
       name: sliding_sheet
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.12"
+    version: "0.5.2"
   source_gen:
     dependency: transitive
     description:

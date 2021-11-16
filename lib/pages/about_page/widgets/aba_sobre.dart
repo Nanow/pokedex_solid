@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pokedex_youtube/components/circular_progress_about.dart';
-import 'package:pokedex_youtube/models/specie.dart';
-import 'package:pokedex_youtube/stores/pokeapi_store.dart';
-import 'package:pokedex_youtube/stores/pokeapiv2_store.dart';
+import '../../../components/circular_progress_about.dart';
+import '../../../models/specie.dart';
+import '../../../stores/pokeapi_store.dart';
+import '../../../stores/pokeapiv2_store.dart';
 
 class AbaSobre extends StatelessWidget {
   final PokeApiV2Store _pokeApiV2Store = GetIt.instance<PokeApiV2Store>();

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pokedex_youtube/models/pokeon_list_model.dart';
-import 'package:pokedex_youtube/stores/pokeapi_store.dart';
+import '../../../models/pokeon_list_model.dart';
+import '../../../stores/pokeapi_store.dart';
 
 class AbaEvolucao extends StatelessWidget {
   final PokeApiStore _pokeApiStore = GetIt.instance<PokeApiStore>();

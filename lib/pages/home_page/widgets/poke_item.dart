@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_youtube/consts/consts_app.dart';
+import '../../../consts/consts_app.dart';
 
 class PokeItem extends StatelessWidget {
   final String name;
