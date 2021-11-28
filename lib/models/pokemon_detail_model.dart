@@ -1,4 +1,5 @@
 import 'abilitie_model.dart';
+import 'ability_description_model.dart';
 
 class PokemonDetailModel {
   List<AbilitieModel>? abilities;
@@ -78,56 +79,6 @@ class PokemonDetailModel {
     }
     weight = json['weight'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.abilities != null) {
-      data['abilities'] = this.abilities!.map((v) => v.toJson()).toList();
-    }
-    data['base_experience'] = this.baseExperience;
-    if (this.gameIndices != null) {
-      data['game_indices'] = this.gameIndices!.map((v) => v.toJson()).toList();
-    }
-    data['height'] = this.height;
-    data['id'] = this.id;
-    data['is_default'] = this.isDefault;
-    data['location_area_encounters'] = this.locationAreaEncounters;
-    if (this.moves != null) {
-      data['moves'] = this.moves!.map((v) => v.toJson()).toList();
-    }
-    data['name'] = this.name;
-    data['order'] = this.order;
-    if (this.species != null) {
-      data['species'] = this.species!.toJson();
-    }
-    if (this.stats != null) {
-      data['stats'] = this.stats!.map((v) => v.toJson()).toList();
-    }
-    if (this.types != null) {
-      data['types'] = this.types!.map((v) => v.toJson()).toList();
-    }
-    data['weight'] = this.weight;
-    return data;
-  }
-}
-
-class AbilityDescriptionModel {
-  String? name;
-  String? url;
-
-  AbilityDescriptionModel({this.name, this.url});
-
-  AbilityDescriptionModel.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    url = json['url'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['url'] = this.url;
-    return data;
-  }
 }
 
 class GameIndiceModel {
@@ -141,15 +92,6 @@ class GameIndiceModel {
     version = json['version'] != null
         ? new AbilityDescriptionModel.fromJson(json['version'])
         : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['game_index'] = this.gameIndex;
-    if (this.version != null) {
-      data['version'] = this.version!.toJson();
-    }
-    return data;
   }
 }
 
@@ -170,18 +112,6 @@ class MoveModel {
       });
     }
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.move != null) {
-      data['move'] = this.move!.toJson();
-    }
-    if (this.versionGroupDetails != null) {
-      data['version_group_details'] =
-          this.versionGroupDetails!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
 }
 
 class VersionGroupDetailModel {
@@ -200,18 +130,6 @@ class VersionGroupDetailModel {
     versionGroup = json['version_group'] != null
         ? new AbilityDescriptionModel.fromJson(json['version_group'])
         : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['level_learned_at'] = this.levelLearnedAt;
-    if (this.moveLearnMethod != null) {
-      data['move_learn_method'] = this.moveLearnMethod!.toJson();
-    }
-    if (this.versionGroup != null) {
-      data['version_group'] = this.versionGroup!.toJson();
-    }
-    return data;
   }
 }
 
@@ -274,16 +192,6 @@ class StatModel {
         ? new AbilityDescriptionModel.fromJson(json['stat'])
         : null;
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['base_stat'] = this.baseStat;
-    data['effort'] = this.effort;
-    if (this.stat != null) {
-      data['stat'] = this.stat!.toJson();
-    }
-    return data;
-  }
 }
 
 class TypeModel {
@@ -297,14 +205,5 @@ class TypeModel {
     type = json['type'] != null
         ? new AbilityDescriptionModel.fromJson(json['type'])
         : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['slot'] = this.slot;
-    if (this.type != null) {
-      data['type'] = this.type!.toJson();
-    }
-    return data;
   }
 }

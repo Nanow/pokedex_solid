@@ -1,4 +1,4 @@
-import 'pokemon_detail_model.dart';
+import 'ability_description_model.dart';
 
 class AbilitieModel {
   AbilityDescriptionModel? ability;
@@ -13,15 +13,5 @@ class AbilitieModel {
         : null;
     isHidden = json['is_hidden'];
     slot = json['slot'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.ability != null) {
-      data['ability'] = this.ability!.toJson();
-    }
-    data['is_hidden'] = this.isHidden;
-    data['slot'] = this.slot;
-    return data;
   }
 }
