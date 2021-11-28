@@ -174,7 +174,7 @@ class AbaStatus extends StatelessWidget {
                 ),
                 Observer(builder: (context) {
                   List<int?> _list =
-                      getStatusPokemon(_pokeApiV2Store!.pokeApiV2!);
+                      getStatusPokemon(_pokeApiV2Store?.pokeApiV2);
                   return Column(
                     children: <Widget>[
                       StatusBar(
