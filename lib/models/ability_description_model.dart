@@ -1,11 +1,11 @@
-class AbilityDescriptionModel {
+class InfoDescriptionModel {
   String? name;
   String? url;
 
-  AbilityDescriptionModel({this.name, this.url});
+  InfoDescriptionModel({this.name, this.url});
 
-  factory AbilityDescriptionModel.fromJson(Map<String, dynamic> map) {
-    return AbilityDescriptionModel(
+  factory InfoDescriptionModel.fromJson(Map<String, dynamic> map) {
+    return InfoDescriptionModel(
       name: map['name'] != null ? map['name'] : null,
       url: map['url'] != null ? map['url'] : null,
     );

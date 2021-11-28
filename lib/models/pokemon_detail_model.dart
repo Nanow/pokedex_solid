@@ -13,7 +13,7 @@ class PokemonDetailModel {
   List<MoveModel>? moves;
   String? name;
   int? order;
-  AbilityDescriptionModel? species;
+  InfoDescriptionModel? species;
   List<StatModel>? stats;
   List<TypeModel>? types;
   int? weight;
@@ -63,7 +63,7 @@ class PokemonDetailModel {
     name = json['name'];
     order = json['order'];
     species = json['species'] != null
-        ? new AbilityDescriptionModel.fromJson(json['species'])
+        ? new InfoDescriptionModel.fromJson(json['species'])
         : null;
     if (json['stats'] != null) {
       stats = <StatModel>[];
@@ -83,27 +83,27 @@ class PokemonDetailModel {
 
 class GameIndiceModel {
   int? gameIndex;
-  AbilityDescriptionModel? version;
+  InfoDescriptionModel? version;
 
   GameIndiceModel({this.gameIndex, this.version});
 
   GameIndiceModel.fromJson(Map<String, dynamic> json) {
     gameIndex = json['game_index'];
     version = json['version'] != null
-        ? new AbilityDescriptionModel.fromJson(json['version'])
+        ? new InfoDescriptionModel.fromJson(json['version'])
         : null;
   }
 }
 
 class MoveModel {
-  AbilityDescriptionModel? move;
+  InfoDescriptionModel? move;
   List<VersionGroupDetailModel>? versionGroupDetails;
 
   MoveModel({this.move, this.versionGroupDetails});
 
   MoveModel.fromJson(Map<String, dynamic> json) {
     move = json['move'] != null
-        ? new AbilityDescriptionModel.fromJson(json['move'])
+        ? new InfoDescriptionModel.fromJson(json['move'])
         : null;
     if (json['version_group_details'] != null) {
       versionGroupDetails = <VersionGroupDetailModel>[];
@@ -116,8 +116,8 @@ class MoveModel {
 
 class VersionGroupDetailModel {
   int? levelLearnedAt;
-  AbilityDescriptionModel? moveLearnMethod;
-  AbilityDescriptionModel? versionGroup;
+  InfoDescriptionModel? moveLearnMethod;
+  InfoDescriptionModel? versionGroup;
 
   VersionGroupDetailModel(
       {this.levelLearnedAt, this.moveLearnMethod, this.versionGroup});
@@ -125,10 +125,10 @@ class VersionGroupDetailModel {
   VersionGroupDetailModel.fromJson(Map<String, dynamic> json) {
     levelLearnedAt = json['level_learned_at'];
     moveLearnMethod = json['move_learn_method'] != null
-        ? new AbilityDescriptionModel.fromJson(json['move_learn_method'])
+        ? new InfoDescriptionModel.fromJson(json['move_learn_method'])
         : null;
     versionGroup = json['version_group'] != null
-        ? new AbilityDescriptionModel.fromJson(json['version_group'])
+        ? new InfoDescriptionModel.fromJson(json['version_group'])
         : null;
   }
 }
@@ -181,7 +181,7 @@ class SpriteModel {
 class StatModel {
   int? baseStat;
   int? effort;
-  AbilityDescriptionModel? stat;
+  InfoDescriptionModel? stat;
 
   StatModel({this.baseStat, this.effort, this.stat});
 
@@ -189,21 +189,21 @@ class StatModel {
     baseStat = json['base_stat'];
     effort = json['effort'];
     stat = json['stat'] != null
-        ? new AbilityDescriptionModel.fromJson(json['stat'])
+        ? new InfoDescriptionModel.fromJson(json['stat'])
         : null;
   }
 }
 
 class TypeModel {
   int? slot;
-  AbilityDescriptionModel? type;
+  InfoDescriptionModel? type;
 
   TypeModel({this.slot, this.type});
 
   TypeModel.fromJson(Map<String, dynamic> json) {
     slot = json['slot'];
     type = json['type'] != null
-        ? new AbilityDescriptionModel.fromJson(json['type'])
+        ? new InfoDescriptionModel.fromJson(json['type'])
         : null;
   }
 }
