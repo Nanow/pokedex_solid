@@ -38,7 +38,7 @@ class AbaEvolucao extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
         child: Text(
-          _pokeApiStore!.pokemonAtual!.name!,
+          _pokeApiStore!.pokemonAtual!.name,
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,

@@ -68,8 +68,8 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      _pokemonStore!.corPokemon.withOpacity(0.7),
-                      _pokemonStore!.corPokemon,
+                      _pokemonStore!.corPokemon!.withOpacity(0.7),
+                      _pokemonStore!.corPokemon!,
                     ],
                   ),
                 ),
@@ -116,7 +116,7 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                           _progress *
                               (MediaQuery.of(context).size.height * 0.060),
                       child: Text(
-                        _pokemonStore!.pokemonAtual!.name!,
+                        _pokemonStore!.pokemonAtual!.name,
                         style: TextStyle(
                             fontFamily: 'Google',
                             fontSize: 38 -
@@ -223,7 +223,7 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                                       child: Hero(
                                         tag:
                                             index == _pokemonStore!.posicaoAtual
-                                                ? _pokeitem.name!
+                                                ? _pokeitem.name
                                                 : 'none' + index.toString(),
                                         child: Image.network(
                                           'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${_pokeitem.num}.png',

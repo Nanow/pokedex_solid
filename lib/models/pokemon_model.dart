@@ -1,20 +1,20 @@
 import 'evolution_model.dart';
 
 class PokemonModel {
-  int? id;
-  String? num;
-  String? name;
-  String? img;
-  List<String>? type;
-  String? height;
-  String? weight;
-  String? candy;
-  String? egg;
-  List<EvolutionModel>? nextEvolution;
-  List<EvolutionModel>? prevEvolution;
+  final int? id;
+  final String? num;
+  final String name;
+  final String? img;
+  final List<String>? type;
+  final String height;
+  final String? weight;
+  final String? candy;
+  final String? egg;
+  final List<EvolutionModel>? nextEvolution;
+  final List<EvolutionModel>? prevEvolution;
 
   PokemonModel(
-      {this.id,
+      this.id,
       this.num,
       this.name,
       this.img,
@@ -24,29 +24,27 @@ class PokemonModel {
       this.candy,
       this.egg,
       this.nextEvolution,
-      this.prevEvolution});
+      this.prevEvolution);
 
-  PokemonModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    num = json['num'];
-    name = json['name'];
-    img = json['img'];
-    type = json['type'].cast<String>();
-    height = json['height'];
-    weight = json['weight'];
-    candy = json['candy'];
-    egg = json['egg'];
-    if (json['next_evolution'] != null) {
-      nextEvolution = <EvolutionModel>[];
-      json['next_evolution'].forEach((v) {
-        nextEvolution!.add(new EvolutionModel.fromJson(v));
-      });
-    }
-    if (json['prev_evolution'] != null) {
-      prevEvolution = <EvolutionModel>[];
-      json['prev_evolution'].forEach((v) {
-        prevEvolution!.add(new EvolutionModel.fromJson(v));
-      });
-    }
+  factory PokemonModel.fromJson(Map<String, dynamic> map) {
+    return PokemonModel(
+      map['id'] != null ? map['id'] : null,
+      map['num'] != null ? map['num'] : null,
+      map['name'],
+      map['img'] != null ? map['img'] : null,
+      map['type'] != null ? List<String>.from(map['type']) : null,
+      map['height'],
+      map['weight'] != null ? map['weight'] : null,
+      map['candy'] != null ? map['candy'] : null,
+      map['egg'] != null ? map['egg'] : null,
+      map['nextEvolution'] != null
+          ? List<EvolutionModel>.from(
+              map['nextEvolution']?.map((x) => EvolutionModel.fromJson(x)))
+          : null,
+      map['prevEvolution'] != null
+          ? List<EvolutionModel>.from(
+              map['prevEvolution']?.map((x) => EvolutionModel.fromJson(x)))
+          : null,
+    );
   }
 }

@@ -24,18 +24,18 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
               name: '_PokeApiStoreBase.pokemonAtual'))
       .value;
 
-  final _$_pokeAPIAtom = Atom(name: '_PokeApiStoreBase._pokeAPI');
+  final _$_pokeListModelAtom = Atom(name: '_PokeApiStoreBase._pokeListModel');
 
   @override
-  PokeListModel? get _pokeAPI {
-    _$_pokeAPIAtom.reportRead();
-    return super._pokeAPI;
+  PokeListModel? get _pokeListModel {
+    _$_pokeListModelAtom.reportRead();
+    return super._pokeListModel;
   }
 
   @override
-  set _pokeAPI(PokeListModel? value) {
-    _$_pokeAPIAtom.reportWrite(value, super._pokeAPI, () {
-      super._pokeAPI = value;
+  set _pokeListModel(PokeListModel? value) {
+    _$_pokeListModelAtom.reportWrite(value, super._pokeListModel, () {
+      super._pokeListModel = value;
     });
   }
 
@@ -57,13 +57,13 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   final _$corPokemonAtom = Atom(name: '_PokeApiStoreBase.corPokemon');
 
   @override
-  dynamic get corPokemon {
+  Color? get corPokemon {
     _$corPokemonAtom.reportRead();
     return super.corPokemon;
   }
 
   @override
-  set corPokemon(dynamic value) {
+  set corPokemon(Color? value) {
     _$corPokemonAtom.reportWrite(value, super.corPokemon, () {
       super.corPokemon = value;
     });

@@ -74,7 +74,7 @@ class AbaSobre extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          _pokeApiStore!.pokemonAtual!.height!,
+                          _pokeApiStore!.pokemonAtual!.height,
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.black,

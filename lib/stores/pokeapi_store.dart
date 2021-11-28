@@ -14,38 +14,38 @@ class PokeApiStore = _PokeApiStoreBase with _$PokeApiStore;
 
 abstract class _PokeApiStoreBase with Store {
   @observable
-  PokeListModel? _pokeAPI;
+  PokeListModel? _pokeListModel;
 
   @observable
   PokemonModel? _pokemonAtual;
 
   @observable
-  dynamic corPokemon;
+  Color? corPokemon;
 
   @observable
   int? posicaoAtual;
 
   @computed
-  PokeListModel? get pokeAPI => _pokeAPI;
+  PokeListModel? get pokeAPI => _pokeListModel;
 
   @computed
   PokemonModel? get pokemonAtual => _pokemonAtual;
 
   @action
   void fetchPokemonList() {
-    _pokeAPI = null;
+    _pokeListModel = null;
     loadPokeAPI().then((pokeList) {
-      _pokeAPI = pokeList;
+      _pokeListModel = pokeList;
     });
   }
 
   PokemonModel getPokemon({required int index}) {
-    return _pokeAPI!.pokemon![index];
+    return _pokeListModel!.pokemon![index];
   }
 
   @action
   void setPokemonAtual({required int index}) {
-    _pokemonAtual = _pokeAPI!.pokemon![index];
+    _pokemonAtual = _pokeListModel!.pokemon![index];
     corPokemon = ConstsApp.getColorType(type: _pokemonAtual!.type![0]);
     posicaoAtual = index;
   }

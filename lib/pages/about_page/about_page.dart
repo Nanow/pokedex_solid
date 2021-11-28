@@ -68,7 +68,7 @@ class _AboutPageState extends State<AboutPage>
               indicator: MD2Indicator(
                   //it begins here
                   indicatorHeight: 3,
-                  indicatorColor: _pokemonStore!.corPokemon,
+                  indicatorColor: _pokemonStore!.corPokemon ?? Colors.blue,
                   indicatorSize: MD2IndicatorSize
                       .normal //3 different modes tiny-normal-full
                   ),
