@@ -49,26 +49,4 @@ class PokemonModel {
       });
     }
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['num'] = this.num;
-    data['name'] = this.name;
-    data['img'] = this.img;
-    data['type'] = this.type;
-    data['height'] = this.height;
-    data['weight'] = this.weight;
-    data['candy'] = this.candy;
-    data['egg'] = this.egg;
-    if (this.nextEvolution != null) {
-      data['next_evolution'] =
-          this.nextEvolution!.map((v) => v.toJson()).toList();
-    }
-    if (this.prevEvolution != null) {
-      data['prev_evolution'] =
-          this.prevEvolution!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
 }

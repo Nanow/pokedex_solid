@@ -50,7 +50,7 @@ class PokemonDetailModel {
         gameIndices!.add(new GameIndiceModel.fromJson(v));
       });
     }
-    height = json['height'];
+    height = json['height']; 
     id = json['id'];
     isDefault = json['is_default'];
     locationAreaEncounters = json['location_area_encounters'];
