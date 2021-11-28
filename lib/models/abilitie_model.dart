@@ -1,7 +1,7 @@
 import 'pokemon_detail_model.dart';
 
 class AbilitieModel {
-  AbilityModel? ability;
+  AbilityDescriptionModel? ability;
   bool? isHidden;
   int? slot;
 
@@ -9,7 +9,7 @@ class AbilitieModel {
 
   AbilitieModel.fromJson(Map<String, dynamic> json) {
     ability = json['ability'] != null
-        ? new AbilityModel.fromJson(json['ability'])
+        ? new AbilityDescriptionModel.fromJson(json['ability'])
         : null;
     isHidden = json['is_hidden'];
     slot = json['slot'];

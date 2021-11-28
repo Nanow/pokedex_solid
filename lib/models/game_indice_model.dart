@@ -2,14 +2,14 @@ import 'pokemon_detail_model.dart';
 
 class GameIndiceModel {
   int? gameIndex;
-  AbilityModel? version;
+  AbilityDescriptionModel? version;
 
   GameIndiceModel({this.gameIndex, this.version});
 
   GameIndiceModel.fromJson(Map<String, dynamic> json) {
     gameIndex = json['game_index'];
     version = json['version'] != null
-        ? new AbilityModel.fromJson(json['version'])
+        ? new AbilityDescriptionModel.fromJson(json['version'])
         : null;
   }
 

@@ -12,7 +12,7 @@ class PokemonDetailModel {
   List<MoveModel>? moves;
   String? name;
   int? order;
-  AbilityModel? species;
+  AbilityDescriptionModel? species;
   List<StatModel>? stats;
   List<TypeModel>? types;
   int? weight;
@@ -62,7 +62,7 @@ class PokemonDetailModel {
     name = json['name'];
     order = json['order'];
     species = json['species'] != null
-        ? new AbilityModel.fromJson(json['species'])
+        ? new AbilityDescriptionModel.fromJson(json['species'])
         : null;
     if (json['stats'] != null) {
       stats = <StatModel>[];
@@ -111,13 +111,13 @@ class PokemonDetailModel {
   }
 }
 
-class AbilityModel {
+class AbilityDescriptionModel {
   String? name;
   String? url;
 
-  AbilityModel({this.name, this.url});
+  AbilityDescriptionModel({this.name, this.url});
 
-  AbilityModel.fromJson(Map<String, dynamic> json) {
+  AbilityDescriptionModel.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     url = json['url'];
   }
@@ -132,14 +132,14 @@ class AbilityModel {
 
 class GameIndiceModel {
   int? gameIndex;
-  AbilityModel? version;
+  AbilityDescriptionModel? version;
 
   GameIndiceModel({this.gameIndex, this.version});
 
   GameIndiceModel.fromJson(Map<String, dynamic> json) {
     gameIndex = json['game_index'];
     version = json['version'] != null
-        ? new AbilityModel.fromJson(json['version'])
+        ? new AbilityDescriptionModel.fromJson(json['version'])
         : null;
   }
 
@@ -154,14 +154,15 @@ class GameIndiceModel {
 }
 
 class MoveModel {
-  AbilityModel? move;
+  AbilityDescriptionModel? move;
   List<VersionGroupDetailModel>? versionGroupDetails;
 
   MoveModel({this.move, this.versionGroupDetails});
 
   MoveModel.fromJson(Map<String, dynamic> json) {
-    move =
-        json['move'] != null ? new AbilityModel.fromJson(json['move']) : null;
+    move = json['move'] != null
+        ? new AbilityDescriptionModel.fromJson(json['move'])
+        : null;
     if (json['version_group_details'] != null) {
       versionGroupDetails = <VersionGroupDetailModel>[];
       json['version_group_details'].forEach((v) {
@@ -185,8 +186,8 @@ class MoveModel {
 
 class VersionGroupDetailModel {
   int? levelLearnedAt;
-  AbilityModel? moveLearnMethod;
-  AbilityModel? versionGroup;
+  AbilityDescriptionModel? moveLearnMethod;
+  AbilityDescriptionModel? versionGroup;
 
   VersionGroupDetailModel(
       {this.levelLearnedAt, this.moveLearnMethod, this.versionGroup});
@@ -194,10 +195,10 @@ class VersionGroupDetailModel {
   VersionGroupDetailModel.fromJson(Map<String, dynamic> json) {
     levelLearnedAt = json['level_learned_at'];
     moveLearnMethod = json['move_learn_method'] != null
-        ? new AbilityModel.fromJson(json['move_learn_method'])
+        ? new AbilityDescriptionModel.fromJson(json['move_learn_method'])
         : null;
     versionGroup = json['version_group'] != null
-        ? new AbilityModel.fromJson(json['version_group'])
+        ? new AbilityDescriptionModel.fromJson(json['version_group'])
         : null;
   }
 
@@ -262,15 +263,16 @@ class SpriteModel {
 class StatModel {
   int? baseStat;
   int? effort;
-  AbilityModel? stat;
+  AbilityDescriptionModel? stat;
 
   StatModel({this.baseStat, this.effort, this.stat});
 
   StatModel.fromJson(Map<String, dynamic> json) {
     baseStat = json['base_stat'];
     effort = json['effort'];
-    stat =
-        json['stat'] != null ? new AbilityModel.fromJson(json['stat']) : null;
+    stat = json['stat'] != null
+        ? new AbilityDescriptionModel.fromJson(json['stat'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -286,14 +288,15 @@ class StatModel {
 
 class TypeModel {
   int? slot;
-  AbilityModel? type;
+  AbilityDescriptionModel? type;
 
   TypeModel({this.slot, this.type});
 
   TypeModel.fromJson(Map<String, dynamic> json) {
     slot = json['slot'];
-    type =
-        json['type'] != null ? new AbilityModel.fromJson(json['type']) : null;
+    type = json['type'] != null
+        ? new AbilityDescriptionModel.fromJson(json['type'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
