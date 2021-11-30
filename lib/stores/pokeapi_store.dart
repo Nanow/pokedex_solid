@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:mobx/mobx.dart';
-import 'package:pokedex_youtube/models/pokemon_model.dart';
+import 'package:pokedex_youtube/domain/entities/pokemon_entity.dart';
+import 'package:pokedex_youtube/domain/entities/pokemon_list_entity.dart';
 
 import '../consts/consts_app.dart';
 import '../models/pokeon_list_model.dart';
@@ -14,10 +15,10 @@ class PokeApiStore = _PokeApiStoreBase with _$PokeApiStore;
 
 abstract class _PokeApiStoreBase with Store {
   @observable
-  PokeListModel? _pokeListModel;
+  PokemonListEntity? _pokeListModel;
 
   @observable
-  PokemonModel? _pokemonAtual;
+  PokemonEntity? _pokemonAtual;
 
   @observable
   Color? corPokemon;
@@ -26,10 +27,10 @@ abstract class _PokeApiStoreBase with Store {
   int? posicaoAtual;
 
   @computed
-  PokeListModel? get pokeAPI => _pokeListModel;
+  PokemonListEntity? get pokeAPI => _pokeListModel;
 
   @computed
-  PokemonModel? get pokemonAtual => _pokemonAtual;
+  PokemonEntity? get pokemonAtual => _pokemonAtual;
 
   @action
   void fetchPokemonList() {
@@ -39,13 +40,13 @@ abstract class _PokeApiStoreBase with Store {
     });
   }
 
-  PokemonModel getPokemon({required int index}) {
-    return _pokeListModel!.pokemon![index];
+  PokemonEntity getPokemon({required int index}) {
+    return _pokeListModel!.pokemons![index];
   }
 
   @action
   void setPokemonAtual({required int index}) {
-    _pokemonAtual = _pokeListModel!.pokemon![index];
+    _pokemonAtual = _pokeListModel!.pokemons![index];
     corPokemon = ConstsApp.getColorType(type: _pokemonAtual!.type![0]);
     posicaoAtual = index;
   }
@@ -57,7 +58,7 @@ abstract class _PokeApiStoreBase with Store {
     );
   }
 
-  Future<PokeListModel?> loadPokeAPI() async {
+  Future<PokemonListEntity?> loadPokeAPI() async {
     try {
       final response = await http.get(
         Uri.https(
@@ -66,7 +67,7 @@ abstract class _PokeApiStoreBase with Store {
         ),
       );
       var decodeJson = jsonDecode(response.body);
-      return PokeListModel.fromJson(decodeJson);
+      return PokeListModel.fromJson(decodeJson).toEntity();
     } catch (error, stacktrace) {
       print("Erro ao carregar lista" + stacktrace.toString());
       return null;

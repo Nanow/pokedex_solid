@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pokedex_youtube/models/pokemon_model.dart';
+import 'package:pokedex_youtube/domain/entities/pokemon_entity.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 
 import '../../consts/consts_app.dart';
@@ -199,9 +199,9 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                     _pokeApiV2Store!.getInfoSpecie(
                         _pokemonStore!.pokemonAtual!.id.toString());
                   },
-                  itemCount: _pokemonStore!.pokeAPI!.pokemon!.length,
+                  itemCount: _pokemonStore!.pokeAPI!.pokemons!.length,
                   itemBuilder: (BuildContext context, int index) {
-                    PokemonModel _pokeitem =
+                    PokemonEntity _pokeitem =
                         _pokemonStore!.getPokemon(index: index);
                     return Stack(
                       alignment: Alignment.center,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pokedex_youtube/models/pokemon_model.dart';
+import 'package:pokedex_youtube/domain/entities/pokemon_entity.dart';
 
 import '../../../stores/pokeapi_store.dart';
 
@@ -12,7 +12,7 @@ class AbaEvolucao extends StatelessWidget {
     return SizedBox(height: 80, width: 80, child: widget);
   }
 
-  List<Widget> getEvolucao(PokemonModel pokemon) {
+  List<Widget> getEvolucao(PokemonEntity pokemon) {
     List<Widget> _list = [];
     if (pokemon.prevEvolution != null) {
       pokemon.prevEvolution!.forEach((f) {
@@ -78,7 +78,7 @@ class AbaEvolucao extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
         child: Observer(builder: (context) {
-          PokemonModel pokemon = _pokeApiStore!.pokemonAtual!;
+          PokemonEntity pokemon = _pokeApiStore!.pokemonAtual!;
           return SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pokedex_youtube/models/pokemon_model.dart';
+import 'package:pokedex_youtube/domain/entities/pokemon_entity.dart';
 
 import '../../consts/consts_app.dart';
 import '../../stores/pokeapi_store.dart';
@@ -71,9 +71,9 @@ class _HomePageState extends State<HomePage> {
                                       new SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 2),
                                   itemCount:
-                                      _pokemonStore!.pokeAPI!.pokemon!.length,
+                                      _pokemonStore!.pokeAPI!.pokemons!.length,
                                   itemBuilder: (context, index) {
-                                    PokemonModel pokemon =
+                                    PokemonEntity pokemon =
                                         _pokemonStore!.getPokemon(index: index);
                                     return AnimationConfiguration.staggeredGrid(
                                       position: index,
