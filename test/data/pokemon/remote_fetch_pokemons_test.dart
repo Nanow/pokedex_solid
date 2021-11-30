@@ -5,10 +5,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mocktail/mocktail.dart';
 import 'package:pokedex_youtube/domain/entities/pokemon_list_entity.dart';
+import 'package:pokedex_youtube/domain/error/domain_error.dart';
 import 'package:pokedex_youtube/infra/http_wrapper.dart';
 import 'package:pokedex_youtube/models/pokeon_list_model.dart';
-
-enum DomainError { unexpeced }
 
 class HttpWrapperMock extends Mock implements HttpWrapper {}
 
@@ -35,9 +34,44 @@ class RemoteFetchPokemons {
 void main() {
   late HttpWrapperMock httpMock;
 
-  void mockHttpResponse({required int statusCode}) {
+  final validReponseBody = """{
+   "pokemon": [{
+    "id": 1,
+    "num": "001",
+    "name": "Bulbasaur",
+    "img": "http://www.serebii.net/pokemongo/pokemon/001.png",
+    "type": [
+      "Grass",
+      "Poison"
+    ],
+    "height": "0.71 m",
+    "weight": "6.9 kg",
+    "candy": "Bulbasaur Candy",
+    "candy_count": 25,
+    "egg": "2 km",
+    "spawn_chance": 0.69,
+    "avg_spawns": 69,
+    "spawn_time": "20:00",
+    "multipliers": [1.58],
+    "weaknesses": [
+      "Fire",
+      "Ice",
+      "Flying",
+      "Psychic"
+    ],
+    "next_evolution": [{
+      "num": "002",
+      "name": "Ivysaur"
+    }, {
+      "num": "003",
+      "name": "Venusaur"
+    }]
+  }]}""";
+
+  void mockHttpResponse({required int statusCode, String? body}) {
     return when(() => httpMock.get(url: any(named: "url"))).thenAnswer(
-        (invocation) async => http.Response("""{"data": 1}""", statusCode));
+        (invocation) async =>
+            http.Response(body ?? validReponseBody, statusCode));
   }
 
   setUp(() {
@@ -88,6 +122,18 @@ void main() {
 
       final actual = sut.call();
       final expected = throwsA(DomainError.unexpeced);
+      expect(actual, expected);
+    });
+    test("Should throw invalidData excpetion if json is in invalid format",
+        () async {
+      mockHttpResponse(statusCode: 200, body: """{"data": []} """);
+
+      final sut = new RemoteFetchPokemons(
+        httpClient: httpMock,
+      ); //System under test
+
+      final actual = sut.call();
+      final expected = throwsA(DomainError.invalidData);
       expect(actual, expected);
     });
   });
