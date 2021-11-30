@@ -1,19 +1,18 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:mobx/mobx.dart';
 import 'package:pokedex_youtube/domain/entities/pokemon_entity.dart';
 import 'package:pokedex_youtube/domain/entities/pokemon_list_entity.dart';
+import 'package:pokedex_youtube/domain/usecase/usecases.dart';
 
 import '../consts/consts_app.dart';
-import '../models/pokeon_list_model.dart';
 
 part 'pokeapi_store.g.dart';
 
 class PokeApiStore = _PokeApiStoreBase with _$PokeApiStore;
 
 abstract class _PokeApiStoreBase with Store {
+  final FetchPokemons fetchPokemons;
+
   @observable
   PokemonListEntity? _pokeListModel;
 
@@ -25,6 +24,8 @@ abstract class _PokeApiStoreBase with Store {
 
   @observable
   int? posicaoAtual;
+
+  _PokeApiStoreBase({required this.fetchPokemons});
 
   @computed
   PokemonListEntity? get pokeAPI => _pokeListModel;
@@ -60,14 +61,7 @@ abstract class _PokeApiStoreBase with Store {
 
   Future<PokemonListEntity?> loadPokeAPI() async {
     try {
-      final response = await http.get(
-        Uri.https(
-          "raw.githubusercontent.com",
-          "Biuni/PokemonGO-Pokedex/master/pokedex.json",
-        ),
-      );
-      var decodeJson = jsonDecode(response.body);
-      return PokeListModel.fromJson(decodeJson).toEntity();
+      return fetchPokemons.call();
     } catch (error, stacktrace) {
       print("Erro ao carregar lista" + stacktrace.toString());
       return null;

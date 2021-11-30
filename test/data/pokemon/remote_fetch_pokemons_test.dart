@@ -1,45 +1,17 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mocktail/mocktail.dart';
+import 'package:pokedex_youtube/data/pokemon/remote_fetch_pokemon.dart';
+import 'package:pokedex_youtube/domain/domain.dart';
 import 'package:pokedex_youtube/domain/entities/pokemon_list_entity.dart';
 import 'package:pokedex_youtube/domain/error/domain_error.dart';
 import 'package:pokedex_youtube/infra/http_wrapper.dart';
-import 'package:pokedex_youtube/models/pokeon_list_model.dart';
 
 class HttpWrapperMock extends Mock implements HttpWrapper {}
 
 class HttpClientRequestMock extends Mock implements HttpClientRequest {}
-
-abstract class FetchPokemons {
-  Future<PokemonListEntity> call();
-}
-
-class RemoteFetchPokemons extends FetchPokemons {
-  final HttpWrapperMock httpClient;
-
-  RemoteFetchPokemons({required this.httpClient});
-
-  Future<PokemonListEntity> call() async {
-    Map<String, dynamic>? responseData;
-    try {
-      final response = await httpClient.get(
-        url:
-            "raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json",
-      );
-      if (response.statusCode != 200) {
-        throw DomainError.unexpeced;
-      }
-      responseData = jsonDecode(response.body);
-    } catch (e) {
-      throw DomainError.unexpeced;
-    }
-
-    return PokeListModel.fromJson(responseData!).toEntity();
-  }
-}
 
 void main() {
   late HttpWrapperMock httpMock;
@@ -78,7 +50,8 @@ void main() {
     }]
   }]}""";
   When<Future<http.Response>> mockHttpCall() {
-    return when(() => httpMock.get(url: any(named: "url")));
+    return when(
+        () => httpMock.get(path: any(named: "path"), host: any(named: 'host')));
   }
 
   void mockHttpResponse({required int statusCode, String? body}) {
@@ -108,8 +81,8 @@ void main() {
 
       verify(
         () => httpMock.get(
-          url:
-              "raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json",
+          host: "raw.githubusercontent.com",
+          path: "Biuni/PokemonGO-Pokedex/master/pokedex.json",
         ),
       ).called(1);
     });
