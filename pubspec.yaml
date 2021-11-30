@@ -34,6 +34,7 @@ dependencies:
     git:
       url: git://github.com/westdabestdb/md2_tab_indicator.git
       ref: master
+  mocktail: ^0.2.0
       
 dev_dependencies:
   flutter_test:
