@@ -10,7 +10,7 @@
 
 1. ✅ Deve lancar excessão unexpected caso retorne algo diferente de 200.
 2. ✅ Deve lancar um error de Invalid data caso o json não esteja nos padrões experados.
-3. ❌ Deve lancar um error de unexpected caso o http throws.
+3. ✅ Deve lancar um error de unexpected caso o http throws.
 
-❌
-✅
+<!-- ❌
+✅ -->
