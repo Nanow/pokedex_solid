@@ -6,5 +6,5 @@ class ConstsAPI {
   static String pokeapiv2EspeciesURL =
       'https://pokeapi.co/api/v2/pokemon-species/';
 
-  static getColorType({required String type}) {} //Numero na Frente
+  static getColorType({required String type}) {}
 }

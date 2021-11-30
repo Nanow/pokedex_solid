@@ -1,3 +1,5 @@
+import 'package:pokedex_youtube/domain/entities/pokemon_entity.dart';
+
 import 'evolution_model.dart';
 
 class PokemonModel {
@@ -46,5 +48,24 @@ class PokemonModel {
               map['prevEvolution']?.map((x) => EvolutionModel.fromJson(x)))
           : null,
     );
+  }
+
+  PokemonEntity toEntity() {
+    return PokemonEntity(
+        id: id,
+        num: num,
+        name: name,
+        img: img,
+        type: type,
+        height: height,
+        weight: weight,
+        candy: candy,
+        egg: egg,
+        nextEvolution: nextEvolution != null
+            ? nextEvolution?.map((e) => e.toEntity()).toList()
+            : [],
+        prevEvolution: prevEvolution != null
+            ? prevEvolution?.map((e) => e.toEntity()).toList()
+            : []);
   }
 }
