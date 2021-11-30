@@ -8,6 +8,8 @@ import 'package:pokedex_youtube/domain/entities/pokemon_list_entity.dart';
 import 'package:pokedex_youtube/infra/http_wrapper.dart';
 import 'package:pokedex_youtube/models/pokeon_list_model.dart';
 
+enum DomainError { unexpeced }
+
 class HttpWrapperMock extends Mock implements HttpWrapper {}
 
 class HttpClientRequestMock extends Mock implements HttpClientRequest {}
@@ -22,6 +24,9 @@ class RemoteFetchPokemons {
       url:
           "raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json",
     );
+    if (response.statusCode != 200) {
+      throw DomainError.unexpeced;
+    }
     final decodeJson = jsonDecode(response.body);
     return PokeListModel.fromJson(decodeJson).toEntity();
   }
@@ -30,40 +35,60 @@ class RemoteFetchPokemons {
 void main() {
   late HttpWrapperMock httpMock;
 
+  void mockHttpResponse({required int statusCode}) {
+    return when(() => httpMock.get(url: any(named: "url"))).thenAnswer(
+        (invocation) async => http.Response("""{"data": 1}""", statusCode));
+  }
+
   setUp(() {
     httpMock = HttpWrapperMock();
-    when(() => httpMock.get(url: any(named: "url"))).thenAnswer(
-        (invocation) async => http.Response("""{"data": 1}""", 200));
+    mockHttpResponse(statusCode: 200);
   });
 
-  test('Should call method with the rigth params', () async {
-    final sut =
-        new RemoteFetchPokemons(httpClient: httpMock); //System under test
-    await sut.call();
+  group("Rules", () {
+    test('Should call method with the rigth params', () async {
+      final sut =
+          new RemoteFetchPokemons(httpClient: httpMock); //System under test
+      await sut.call();
+    });
+
+    test('Should call the correct endpoint', () async {
+      final sut =
+          new RemoteFetchPokemons(httpClient: httpMock); //System under test
+
+      await sut.call();
+
+      verify(
+        () => httpMock.get(
+          url:
+              "raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json",
+        ),
+      ).called(1);
+    });
+
+    test('Should return a pokemon List', () async {
+      final sut = new RemoteFetchPokemons(
+        httpClient: httpMock,
+      ); //System under test
+
+      final actual = await sut.call();
+      final expected = isA<PokemonListEntity>();
+
+      expect(actual, expected);
+    });
   });
 
-  test('Should call the correct endpoint', () async {
-    final sut =
-        new RemoteFetchPokemons(httpClient: httpMock); //System under test
+  group("Exceptions", () {
+    test("Should throw unexpected excpetion if status code is not 200",
+        () async {
+      mockHttpResponse(statusCode: 404);
 
-    await sut.call();
+      final sut =
+          new RemoteFetchPokemons(httpClient: httpMock); //System under test
 
-    verify(
-      () => httpMock.get(
-        url:
-            "raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json",
-      ),
-    ).called(1);
-  });
-
-  test('Should return a pokemon List', () async {
-    final sut = new RemoteFetchPokemons(
-      httpClient: httpMock,
-    ); //System under test
-
-    final actual = await sut.call();
-    final expected = isA<PokemonListEntity>();
-
-    expect(actual, expected);
+      final actual = sut.call();
+      final expected = throwsA(DomainError.unexpeced);
+      expect(actual, expected);
+    });
   });
 }
