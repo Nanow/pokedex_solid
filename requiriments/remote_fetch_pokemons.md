@@ -4,7 +4,7 @@
 
 1. ✅ Deve não ser necessário passar nenhum parametro
 2. ✅ Deve chamar o endpoint raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json
-3. ❌ Deve retornar uma lista pokemons
+3. ✅ Deve retornar uma lista pokemons
 
 > ## Excessão - GetCurrentPlataforma
 
